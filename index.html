@@ -1,67 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aswin Santhosh - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aswin Santhosh - Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>Aswin Santhosh</h1>
-        <p>Software Developer | Problem Solver</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="toggle-theme">🌓</button></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section id="about" class="section-about">
-        <h2>About Me</h2>
-        <p>
-            Hello! I'm Aswin Santhosh, a passionate software developer with a knack for problem-solving. I enjoy building applications and exploring new technologies.
-            (Add more detailed about yourself here. Based on your website, you have a strong interest in programming and problem solving)
-        </p>
-    </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <h1 class="name-highlight">Aswin Santhosh</h1>
+    <p>I’m Aswin Santhosh, a creative software developer with a passion for building apps, solving problems, and crafting digital experiences.</p>
+    <p class="tagline">Software Developer | Problem Solver</p>
+  </section>
 
-    <section id="projects" class="section-projects">
-        <h2>Projects</h2>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>BudjetBuddy</h3>
+        <p>Hostel booking web app with dynamic pricing and management.</p>
+        <a href="https://aswinksanthosh000.wixsite.com/mysite/portfolio-collections/my-portfolio/project-1-%22budjectbuddy%22">View Project</a>
+      </div>
+      <div class="project-card">
+        <h3>Artistic Profiles</h3>
+        <p>Platform to showcase and manage artist profiles with ease.</p>
+        <a href="https://aswinksanthosh000.wixsite.com/mysite/portfolio-collections/my-portfolio/project2">View Project</a>
+      </div>
+    </div>
+  </section>
 
-        <div class="project">
-            <img src="placeholder-project1.jpg" alt="Project 1">
-            <h3>Project 1</h3>
-            <p>Description of Project 1. (Add details about your projects here. Include links to GitHub or live demos if possible)</p>
-            <a href="#">View Project</a>
-        </div>
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>JavaScript</li>
+      <li>Python</li>
+      <li>Django</li>
+      <li>React</li>
+      <li>SQL</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
 
-        <div class="project">
-            <img src="placeholder-project2.jpg" alt="Project 2">
-            <h3>Project 2</h3>
-            <p>Description of Project 2.</p>
-            <a href="#">View Project</a>
-        </div>
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Culture Monitor (WordPress)</h3>
+        <p>Created custom backend plugins, metadata management, and graphing tools for client projects.</p>
+        <span class="exp-date">Sep 2024 - Dec 2024</span>
+      </div>
+      <div class="project-card">
+        <h3>Python Tutor | SOFTEN TECHNOLOGIES</h3>
+        <p>Guided students through assignments and projects while ensuring concept clarity and subject mastery.</p>
+        <span class="exp-date">Aug 2022 - Oct 2022</span>
+      </div>
+    </div>
+  </section>
 
-        <div class="project">
-            <img src="placeholder-project3.jpg" alt="Project 3">
-            <h3>Project 3</h3>
-            <p>Description of Project 3.</p>
-            <a href="#">View Project</a>
-        </div>
+  <section id="education">
+    <h2>Education</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Adv. Diploma in Computer Science</h3>
+        <p>Algonquin College</p>
+        <span class="edu-date">May 2023 - Apr 2025</span>
+      </div>
+      <div class="project-card">
+        <h3>Python Programming | Certification</h3>
+        <p>SOFTEN TECHNOLOGIES Institute</p>
+        <span class="edu-date">Jan 2022 - Dec 2022</span>
+      </div>
+    </div>
+  </section>
 
-    </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:aswinksanthosh000@gmail.com">aswinksanthosh000@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/aswin-k-santhosh-15557a245">LinkedIn</a></p>
+    <p>GitHub: <a href="https://github.com/Aswinksanthosh">GitHub</a></p>
+  </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: your.email@example.com</p>
-        <p>LinkedIn: <a href="#">Your LinkedIn Profile</a></p>
-        <p>GitHub: <a href="#">Your GitHub Profile</a></p>
-    </section>
+  <footer>
+    <p>&copy; 2025 Aswin Santhosh</p>
+  </footer>
 
-    <footer>
-        <p>&copy; 2024 Aswin Santhosh</p>
-    </footer>
+  <script src="scripts.js"></script>
 </body>
 </html>
