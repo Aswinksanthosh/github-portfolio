@@ -63,6 +63,7 @@
     margin-bottom: 20px;
     font-family:'Times New Roman', Times, serif;
     font-size: 4ex;
+    align-self: center;
   }
   
   .project-grid {
