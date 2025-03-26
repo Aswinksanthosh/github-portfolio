@@ -1,5 +1,5 @@
 # 🎨 Artist Portfolio Platform
-
+# code is not available! ( Made in WIX )
 > A live web platform to discover, view, and manage creative artist profiles across categories like tattoo, mehndi, nails, murals and more.
 
 ![Banner](./assets/artist-listing.png)
@@ -81,14 +81,13 @@ Logic for search + dynamic filtering via code editor.
 
 ## 🚀 Live Demo
 
-> *(Optional: Add your live website link here if public)*  
-**Example**: [Visit Live Site](https://your-wix-link.com)
+Visit Live Site](https://aswinksanthosh000.wixsite.com/artist3)
 
 ---
 
 ## 🙋‍♂️ Author
 
-Built by **Your Name**  
+Built by **Aswin K Santhosh**  
 [Portfolio](https://aswinksanthosh.github.io/github-portfolio/) | [LinkedIn](https://www.linkedin.com/in/aswin-k-santhosh-15557a245)
 
 ---
