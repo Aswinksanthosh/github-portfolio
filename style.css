@@ -3,46 +3,58 @@
     --text-color: #222;
     --accent-color: hsl(180, 30%, 35%);
     --card-bg: #f9f9f9;
-  }
-  
-  body.dark {
+}
+
+body.dark {
     --bg-color: #121212;
     --text-color: #f0f0f0;
     --accent-color: #00bfff;
     --card-bg: #1e1e1e;
-  }
-  
-  body {
+}
+
+body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
-  }
-  
-  header {
-    text-align: center;
-    padding: 20px ;
+    padding-top: 60px; /* Add padding to prevent content from hiding behind fixed nav */
+}
+
+header {
+    /* Remove padding to eliminate the empty space above the nav */
+    padding: 0;
+}
+
+nav {
+    /* Changed position from sticky to fixed */
+    position: fixed;
+    top: 0;
+    width: 100%;
     background: var(--accent-color);
+    z-index: 1000;
     color: white;
-    font-family:'Times New Roman', Times, serif;
-    font-size:larger;
-  }
-  
-  nav ul {
+    line-height: 1.6;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Times New Roman', Times, serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul {
     margin: 0 auto;
     padding: 10px 0;
     display: flex;
     justify-content: center;
     gap: 20px;
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     display: inline;
-  }
-  
-  nav a, #toggle-theme {
+}
+
+nav a, #toggle-theme {
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -50,114 +62,125 @@
     border: none;
     cursor: pointer;
     font-size: 1em;
-  }
-  
-  section {
+}
+
+nav a:hover, nav a.active {
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+section {
     max-width: 1000px;
     margin: 40px auto;
     padding: 0 20px;
-  }
-  
-  h2 {
+}
+
+h2 {
     padding-bottom: 10px;
     margin-bottom: 20px;
     font-family:'Times New Roman', Times, serif;
     font-size:2rem;
     align-self: center;
-  }
-  
-  .project-grid {
+}
+
+.project-grid {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-  
-  .project-card {
+}
+
+.project-card {
     background: var(--card-bg);
     border-radius: 8px;
     padding: 20px;
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  }
-  
-  .project-card:hover {
+}
+
+.project-card:hover {
     transform: scale(1.03);
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  }
-  
-  .project-card a {
+}
+
+.project-card a {
     display: inline-block;
     margin-top: 10px;
     color: var(--accent-color);
     font-weight: bold;
-  }
-  
-  footer {
+}
+
+footer {
     text-align: center;
     padding: 20px;
     background-color: var(--accent-color);
     color: white;
-  }
-  
-  #about,#projects,#skills,#experience,#education,#contact {
+}
+
+#about, #projects, #skills, #experience, #education, #contact {
     background: var(--card-bg);
     padding: 10px 20px;
     text-align: center;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     margin-top: 40px;
-  }
-  
-  #about h2 {
+}
+
+#about h2 {
     margin-bottom: 10px;
     font-family:'Times New Roman', Times, serif;
     font-size: 4ex;
-  }
-  
-  #about .name-highlight {
+}
+
+#about .name-highlight {
     font-size: 2.8em;
     font-weight: 800;
     margin-bottom: 10px;
     color: var(--text-color);
-  }
-  
-  #about p {
+}
+
+#about p {
     font-size: 1.1em;
     color: var(--text-color);
     line-height: 1.7;
     margin-bottom: 20px;
-  }
-  
-  #about .tagline {
+}
+
+#about .tagline {
     color: var(--accent-color);
     font-size: 1.1em;
     font-weight: 500;
     margin-top: 0;
-  }
-  
-  .skills-list {
+}
+
+.skills-list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     list-style: none;
     padding: 0;
-  }
-  
-  .skills-list li {
+}
+
+.skills-list li {
     background-color: var(--card-bg);
     padding: 8px 14px;
     border-radius: 6px;
     font-weight: 500;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  
-  .exp-date, .edu-date {
+}
+
+.exp-date, .edu-date {
     font-size: 0.85em;
     color: gray;
     display: block;
     margin-top: 10px;
-  }
-  
-  nav ul li a {
-    margin-right: 10px; /* Adjust the value as needed */
-  }
+}
+
+nav ul li a {
+    margin-right: 10px;
+}
