@@ -184,28 +184,20 @@ footer {
 nav ul li a {
     margin-right: 10px;
 }
-/* Hamburger menu for mobile */
 @media (max-width: 600px) {
     nav ul {
-        display: none;
-        flex-direction: column;
+        flex-wrap: wrap;
+        flex-direction: row;
         gap: 10px;
-        padding: 5px 0;
-        background: var(--accent-color);
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        z-index: 1001;
-    }
-
-    nav.open ul {
-        display: flex;
+        padding: 10px 0;
+        justify-content: center;
     }
 
     nav ul li {
-        display: block;
-        margin-bottom: 5px;
+        flex: 1 1 45%;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: center;
     }
 
     nav a, #toggle-theme {
@@ -213,92 +205,9 @@ nav ul li a {
         padding: 10px 0;
         width: 100%;
         display: block;
-        text-align: center;
     }
 
-    .hamburger {
-        display: block;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-        z-index: 1002;
-        background: none;
-        border: none;
+    nav {
+        padding: 5px 0;
     }
-
-    .hamburger span,
-    .hamburger span:before,
-    .hamburger span:after {
-        display: block;
-        background: white;
-        height: 4px;
-        width: 28px;
-        border-radius: 2px;
-        position: absolute;
-        left: 2px;
-        transition: 0.3s;
-    }
-
-    .hamburger span {
-        top: 14px;
-        position: relative;
-    }
-    .hamburger span:before {
-        content: '';
-        top: -10px;
-        position: absolute;
-    }
-    .hamburger span:after {
-        content: '';
-        top: 10px;
-        position: absolute;
-    }
-
-    section {
-        padding: 0 8px;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #about, #projects, #skills, #experience, #education, #contact {
-        padding: 8px 6px;
-        margin-top: 20px;
-    }
-
-    h2 {
-        font-size: 1.3rem;
-    }
-
-    #about .name-highlight {
-        font-size: 2em;
-    }
-}
-
-/* Hide hamburger on desktop */
-.hamburger {
-    display: none;
-}
-
-@media (max-width: 600px) {
-    .hamburger {
-        display: block;
-    }
-    /* Animate hamburger to X */
-nav.open .hamburger span {
-    background: transparent;
-}
-nav.open .hamburger span:before {
-    top: 0;
-    transform: rotate(45deg);
-}
-nav.open .hamburger span:after {
-    top: 0;
-    transform: rotate(-45deg);
-}
-
 }
