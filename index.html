@@ -99,7 +99,8 @@
 <section id="contact">
   <h2>contact.</h2>
   <div class="contact-wrapper">
-    <form id="contact-form" class="form-horizontal" role="form">
+      <form id="contact-form" class="form-horizontal" action="https://api.web3forms.com/submit" method="POST" id="form">
+        <input type="hidden" name="access_key" value="849d2afd-7239-4428-9c99-40bd74cde3a0" />
       <div class="form-group">
         <div class="col-sm-12">
           <input type="text" class="form-control" id="name" placeholder="NAME" name="name" required>
@@ -107,7 +108,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-12">
-          <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" required>
+          <input type="email" class="form-control" id="email" placeholder="EMAIL" name="_replyto" required>
         </div>
       </div>
       <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
