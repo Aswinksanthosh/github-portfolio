@@ -208,6 +208,11 @@ nav ul li a {
     nav {
         padding: 2px 0;
     }
+
+    .form-horizontal {
+        max-width: 90%;
+        pad
+    }
 }
 
 /* --- New Contact Form Styles --- */
@@ -275,10 +280,3 @@ textarea {
 }
 /* --- End New Contact Form Styles --- */
 
-
-/* --- Mobile Styles --- */
-@media (max-width: 600px) {
-    #contact .contact-wrapper {
-        gap: 20px;
-    }
-}
