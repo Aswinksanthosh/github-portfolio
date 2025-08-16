@@ -1,24 +1,27 @@
-// scripts.js
+// Smooth Scroll
+document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
 
-// Theme Toggle
-document.getElementById('toggle-theme').addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  });
-  
-  // Load Saved Theme
-  window.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark');
+// Navbar Scroll Spy
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
+
+function activateNavLink() {
+  let index = sections.length - 1;
+  for (let i = 0; i < sections.length; i++) {
+    if (window.scrollY + 100 < sections[i].offsetTop) {
+      index = i - 1;
+      break;
     }
-  });
-  
-  // Smooth Scroll
-  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-  
+  }
+  navLinks.forEach(link => link.classList.remove('active'));
+  if (index >= 0) navLinks[index].classList.add('active');
+}
+
+window.addEventListener('scroll', activateNavLink);
+window.addEventListener('load', activateNavLink);
