@@ -69,7 +69,7 @@ nav a:hover, nav a.active {
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    padding: 8px 12px;
+    padding: 0;
     border-radius: 4px;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -192,7 +192,6 @@ nav ul li a {
         padding: 6px 0;
         justify-content: center;
     }
-
     nav ul li {
         flex: 1 1 45%;
         margin-bottom: 6px;
@@ -208,5 +207,78 @@ nav ul li a {
 
     nav {
         padding: 2px 0;
+    }
+}
+
+/* --- New Contact Form Styles --- */
+#contact {
+    /* Uses your existing section styles from the provided CSS */
+    background: var(--card-bg);
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-top: 40px;
+}
+
+#contact .contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+#contact .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#contact .contact-details p {
+    margin: 0;
+}
+
+#contact .form-horizontal {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-control,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.send-button {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.send-button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+/* --- End New Contact Form Styles --- */
+
+
+/* --- Mobile Styles --- */
+@media (max-width: 600px) {
+    #contact .contact-wrapper {
+        gap: 20px;
     }
 }
