@@ -184,32 +184,6 @@ footer {
 nav ul li a {
     margin-right: 10px;
 }
-@media (max-width: 600px) {
-    nav ul {
-        flex-wrap: wrap;
-        flex-direction: row;
-        gap: 8px;
-        padding: 6px 0;
-        justify-content: center;
-    }
-    nav ul li {
-        flex: 1 1 45%;
-        margin-bottom: 6px;
-        display: flex;
-        justify-content: center;
-    }
-
-    nav a, #toggle-theme {
-        font-size: larger;
-        width: 100%;
-        display: block;
-    }
-
-    nav {
-        padding: 2px 0;
-    }
-
-}
 
 /* --- New Contact Form Styles --- */
 #contact {
@@ -276,3 +250,40 @@ textarea {
 }
 /* --- End New Contact Form Styles --- */
 
+/* media start */
+@media (max-width: 600px) {
+    nav ul {
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 8px;
+        padding: 6px 0;
+        justify-content: center;
+    }
+    nav ul li {
+        flex: 1 1 45%;
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav a, #toggle-theme {
+        font-size: larger;
+        width: 100%;
+        display: block;
+    }
+
+    nav {
+        padding: 2px 0;
+    }
+    #contact .form-horizontal {
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    }
+    #about h2 {
+    padding-top: 30px;
+    }
+}
+/* media end */
