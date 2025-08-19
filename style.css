@@ -276,7 +276,7 @@ textarea {
         padding: 2px 0;
     }
     #contact .form-horizontal {
-    width: 100%;
+    width: 80%;
     max-width: 340px;
     display: flex;
     flex-direction: column;
