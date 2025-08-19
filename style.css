@@ -231,6 +231,7 @@ textarea {
     color: var(--text-color);
     border-radius: 5px;
     font-size: 1em;
+    font-family: inherit;
 }
 
 .send-button {
