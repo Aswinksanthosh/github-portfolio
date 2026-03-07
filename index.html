@@ -928,7 +928,7 @@
       </section>
     </div>
 
-    <!-- PROJECT 1: n8n Auto‑Scheduler (Updated friendly text) -->
+    <!-- PROJECT 1: n8n Auto‑Scheduler -->
     <div id="view-project1" class="page-view">
       <section>
         <h2 class="section-label">/ automation</h2>
@@ -952,26 +952,27 @@
           <span class="flow-step">🔗 Webhooks</span>
         </div>
 
-        <!-- Condensed "How it works" story – now friendlier with more functions -->
+        <!-- Condensed "How it works" story – corrected -->
         <div class="glass-card" style="padding: 2.5rem; margin-top: 2rem;">
           <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">📖 How your calendar becomes your personal assistant</h3>
           <div>
             <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
-              <span class="highlight">Every morning</span>, your all‑day tasks (like "Gym" or "Cook") get magically converted into timed events, squeezed into free spots while respecting your fixed meetings. You're in control: set simple rules like <span class="highlight">"no gym within 4 hours of sleep"</span> or <span class="highlight">"buffer 15 min after work"</span>. The scheduler just follows them.
+              <span class="highlight">Every morning</span>, your all‑day tasks from your calendar are <span class="highlight">automatically converted</span> into timed events, guided by the rules you've set in Google Sheets. They're placed into free slots – respecting your fixed meetings.
+            </p>
+            <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
+              You set the rules: <span class="highlight">buffers, avoid‑events, time windows</span> – and the scheduler obeys without question.
             </p>
             <ul class="detail-list" style="margin-top: 2rem; font-size: 1.1rem;">
-              <li>✨ <strong>Recurring patterns</strong> – type "every weekday at 10am" once and it repeats forever.</li>
-              <li>🔄 <strong>Two‑way sync</strong> – change a rule in Google Sheets and it updates the calendar instantly. Edit in the calendar and the sheet syncs back. Same data, two places.</li>
-              <li>🔗 <strong>Clickable links inside event descriptions</strong> – mark tasks done, postpone, or compress without leaving Google Calendar. All from your phone too.</li>
-              <li>🚦 <strong>Smart dependencies</strong> – the system knows you need 30 min after eating before gym, and shifts everything like dominoes if one task runs late.</li>
-              <li>📱 <strong>Edit on the go</strong> – tweak rules directly in the calendar description on your phone. No app needed.</li>
+              <li>✨ <strong>Recurring patterns</strong> like “every weekday at 10am” – just write it once.</li>
+              <li>🔄 <strong>Two‑way sync</strong> with Google Sheets – changes in the sheet update the calendar, and vice versa. The same data lives in both places, always in sync.</li>
+              <li>🔗 <strong>Clickable webhook links</strong> inside event descriptions – mark tasks as <span class="highlight">FINISHED</span>, <span class="highlight">POSTPONE</span>, or <span class="highlight">COMPRESS</span> without leaving Google Calendar. Pure API magic, no extra tools needed.</li>
             </ul>
           </div>
         </div>
 
-        <!-- Friendly tip box: real-world example (updated) -->
+        <!-- Friendly tip box: real-world example -->
         <div class="tip-box">
-          💡 <strong>Real‑world example:</strong> The system knows you shouldn't eat 30 minutes before gym – so it never schedules your meal too close. And if one task runs late, it pushes everything else forward like a row of dominoes – automatically. You decide the rules, or let it be flexible. It's like having a personal assistant who just gets you.
+          💡 <strong>Real‑world example:</strong> Imagine your afternoon is like a train – if one meeting runs late, everything behind it gets delayed. The <strong>Connect your events</strong> engine automatically shifts your tasks like a railway dispatcher, but more importantly, it enforces <strong>smart dependencies</strong>: “Gym must be after Work”, “No gym within 4 hours of sleep”, “Cooking before Eating”. Your schedule flows like a story, not a jumble.
         </div>
 
         <!-- Core engine cards -->
@@ -1538,12 +1539,5 @@ Avoid: team sync</pre>
       }
     }
   </script>
-  <!-- Gemini prompts (copy these to use) 
-   1. "Rewrite this portfolio introduction to be more engaging and highlight my skills as a backend architect and automation specialist: [insert current text]"
-   2. "Generate compelling bullet points for the n8n Auto-Scheduler project focusing on the unique features like webhook controls and constraint-based scheduling."
-   3. "Create a short, punchy tagline for my portfolio that combines backend architecture, automation, and no‑code solutions."
-   4. "Improve the readability of this technical description while keeping all key details: [insert any dense paragraph]"
-   5. "Suggest emoji placements and formatting improvements for this project section to make it more visually appealing: [paste section]"
-  -->
 </body>
 </html>
