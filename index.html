@@ -3,142 +3,1535 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aswin Santhosh - Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Aswin Santhosh | Backend Architect</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap');
 
+    :root {
+      --bg: #F8FAFC;
+      --surface: rgba(255, 255, 255, 0.5);
+      --glass-bg: rgba(255, 255, 255, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.8);
+      --primary: #D4FF00; /* Lime Yellow */
+      --primary-dark: #b8de00;
+      --secondary: #0EA5E9; /* Sky Blue */
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+      --apple-blur: saturate(180%) blur(24px);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 85% 0%, rgba(212, 255, 0, 0.3) 0px, transparent 40%),
+        radial-gradient(circle at 10% 100%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0px, transparent 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Unified Top Navbar */
+    .navbar {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: var(--glass-bg);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      padding: 8px 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      width: auto;
+      max-width: 95vw;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .navbar .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-right: 8px;
+    }
+
+    .navbar .divider {
+      width: 1px;
+      height: 30px;
+      background: rgba(0,0,0,0.1);
+      margin: 0 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 10px 18px;
+      border-radius: 100px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .navbar a:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar a.active-link {
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 4px 10px rgba(0,0,0,0.1);
+      font-weight: 800;
+      transform: scale(1.05);
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .projects-label {
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      margin-right: 4px;
+    }
+
+    /* Adjust main padding for fixed navbar */
+    main {
+      padding-top: 120px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 150px 24px 100px 24px;
+      scroll-margin-top: 120px; /* ensures section is not hidden under navbar when linking */
+    }
+
+    h1, h2, h3 { 
+      font-family: 'Syne', sans-serif; 
+      font-weight: 600;
+    }
+
+    section h2.section-label {
+      font-size: 1rem;
+      color: var(--secondary);
+      letter-spacing: 5px;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .name-highlight {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: -2px;
+      font-weight: 600;
+    }
+
+    .italic-text {
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .dot { 
+      color: var(--text);
+      display: inline-block;
+      position: relative;
+    }
+    
+    .dot::after {
+      content: '';
+      position: absolute;
+      bottom: 15%;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: var(--primary);
+      z-index: -1;
+      border-radius: 10px;
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--surface);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 1px solid var(--glass-border);
+      padding: 5rem;
+      border-radius: 40px;
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 5rem;
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      padding: 3rem;
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+
+    .mini-card:hover { 
+      transform: translateY(-8px); 
+      border-color: var(--primary-dark);
+      box-shadow: 0 12px 30px rgba(212, 255, 0, 0.2);
+    }
+
+    .skills-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 14px 28px;
+      border-radius: 100px;
+      margin: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: transform 0.2s ease;
+    }
+    
+    .skills-pill:hover {
+      transform: scale(1.05);
+    }
+
+    .skills-pill:nth-child(even) { border-bottom: 4px solid var(--primary); }
+    .skills-pill:nth-child(odd) { border-bottom: 4px solid var(--secondary); }
+
+    .detail-list {
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding-left: 1.5rem;
+    }
+
+    .detail-list li {
+      margin-bottom: 12px;
+    }
+    
+    .tech-stack span {
+      background: var(--primary);
+      color: var(--text);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 12px;
+      display: inline-block;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(212, 255, 0, 0.4);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 4rem;
+      background: var(--text);
+      color: white;
+      padding: 16px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      transform: translateY(-3px);
+      background: var(--secondary);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1.4rem;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      margin-bottom: 1rem;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--secondary);
+      background: white;
+    }
+
+    .btn-submit {
+      background: var(--primary);
+      border: none;
+      padding: 1.4rem;
+      width: 100%;
+      border-radius: 24px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      box-shadow: 0 8px 24px rgba(212, 255, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:disabled {
+      background: #e2e8f0;
+      color: #94a3b8;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* Page transitions */
+    .page-view {
+      display: none;
+      opacity: 0;
+      width: 100%;
+      min-height: 100vh;
+    }
+    
+    .page-view.active {
+      display: block;
+      opacity: 1; /* ensures initial view is visible */
+    }
+
+    /* Animation for outgoing page */
+    .page-view.slide-out-left {
+      animation: slideOutLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .page-view.slide-out-right {
+      animation: slideOutRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes slideOutLeft {
+      0% { opacity: 1; transform: translateX(0) scale(1); }
+      100% { opacity: 0; transform: translateX(-80px) scale(0.98); }
+    }
+    @keyframes slideOutRight {
+      0% { opacity: 1; transform: translateX(0) scale(1); }
+      100% { opacity: 0; transform: translateX(80px) scale(0.98); }
+    }
+
+    .slide-right { animation: slideRight 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+    .slide-left { animation: slideLeft 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+
+    @keyframes slideRight {
+      0% { opacity: 0; transform: translateX(80px) scale(0.98); }
+      100% { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    @keyframes slideLeft {
+      0% { opacity: 0; transform: translateX(-80px) scale(0.98); }
+      100% { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    /* Image placeholders & actual images */
+    .img-placeholder {
+      background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+      font-weight: 500;
+      font-size: 1rem;
+      border: 2px dashed #94a3b8;
+      min-height: 180px;
+      width: 100%;
+      margin: 1rem 0;
+    }
+
+    .img-placeholder.small {
+      min-height: 120px;
+    }
+
+    /* Make images clearly clickable */
+    .image-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .project-image {
+      width: 100%;
+      border-radius: 20px;
+      border: 2px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s;
+    }
+
+    .project-image:hover {
+      transform: scale(1.02);
+      border-color: var(--primary);
+    }
+
+    /* Zoom icon overlay */
+    .image-container::after {
+      content: "🔍";
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 50px;
+      font-size: 1rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+
+    .image-container:hover::after {
+      opacity: 1;
+    }
+
+    .feature-grid, .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .photo-item {
+      text-align: center;
+    }
+
+    .photo-item .project-image, .photo-item .img-placeholder {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 0.5rem;
+    }
+
+    .photo-caption {
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(8px);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+
+    .engine-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .engine-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      padding: 2rem;
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .engine-card .engine-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      border: 2px solid var(--glass-border);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .engine-card .engine-image:hover {
+      transform: scale(1.02);
+      border-color: var(--primary);
+    }
+
+    .engine-card .emoji-icon {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .engine-card h4 {
+      margin: 0.5rem 0 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .engine-card p {
+      margin: 0 0 1.5rem;
+      flex-grow: 1;
+    }
+
+    .detail-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      align-self: flex-start;
+    }
+
+    .detail-btn:hover {
+      background: #0284c7;
+    }
+
+    .pitch-banner {
+      background: var(--primary);
+      color: #000;
+      padding: 2rem;
+      border-radius: 30px;
+      margin-bottom: 3rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 20px 30px rgba(212, 255, 0, 0.3);
+    }
+
+    /* System flow mini-card */
+    .flow-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      padding: 1.5rem 2rem;
+      border-radius: 60px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem 2rem;
+      margin: 2rem 0 3rem;
+      font-size: 1.2rem;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .flow-arrow {
+      color: var(--secondary);
+      font-size: 1.5rem;
+    }
+
+    /* Highlighted text */
+    .highlight {
+      background: var(--primary);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    /* Friendly tip box */
+    .tip-box {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    /* Modal for feature details */
+    .feature-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .feature-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--glass-bg);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
+      padding: 2rem;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      color: var(--text);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--primary);
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: var(--secondary);
+    }
+
+    .modal-content pre {
+      background: #0F172A;
+      color: #38BDF8;
+      padding: 1rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+
+    .modal-image {
+      max-width: 100px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      border: 2px solid var(--glass-border);
+    }
+
+    /* Workflow snapshot section */
+    .workflow-snapshots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .snapshot-card {
+      background: var(--surface);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .snapshot-card img {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    .snapshot-card h4 {
+      margin: 0.5rem 0;
+    }
+
+    /* Detailed component cards inside deep-dive */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .component-card {
+      background: var(--surface);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 1.8rem;
+    }
+    .component-card h4 {
+      margin-top: 0;
+      color: var(--secondary);
+    }
+    .component-card p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Collapsible section with highlight */
+    .collapsible {
+      margin: 2rem 0;
+    }
+
+    .collapsible-header {
+      background: linear-gradient(145deg, var(--surface), rgba(212, 255, 0, 0.2));
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 2px solid var(--primary);
+      border-radius: 60px;
+      padding: 1.2rem 2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 1.4rem;
+      transition: background 0.3s;
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    .collapsible-header:hover {
+      background: linear-gradient(145deg, var(--glass-bg), rgba(212, 255, 0, 0.3));
+    }
+
+    .collapsible-header .arrow {
+      transition: transform 0.3s;
+    }
+
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+      background: var(--glass-bg);
+      backdrop-filter: var(--apple-blur);
+      -webkit-backdrop-filter: var(--apple-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      margin-top: 0.5rem;
+      padding: 0 2rem;
+    }
+
+    .collapsible-content.expanded {
+      max-height: 5000px; /* large enough for content */
+      padding: 2rem;
+    }
+
+    /* Lightbox overlay (reuse) */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      font-size: 2.5rem;
+      color: white;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        top: 12px;
+        padding: 8px 12px;
+        gap: 12px;
+      }
+      .navbar .logo {
+        font-size: 1.2rem;
+      }
+      .navbar a {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+      .projects-label {
+        font-size: 0.85rem;
+      }
+      main { padding-top: 100px; }
+      section { padding: 120px 24px 100px 24px; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#about">about me.</a></li>
-        <li><a href="#projects">projects.</a></li>
-        <li><a href="#skills">skills.</a></li>
-        <li><a href="#experience">experience.</a></li>
-        <li><a href="#education">education.</a></li>
-        <li><a href="#contact">contact.</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section id="about">
-    <h2>about me.</h2>
-    <h1 class="name-highlight">Aswin Santhosh</h1>
-    <p>I’m Aswin Santhosh, a creative software developer with strong Python expertise and experience in software and web development. Served as a Python instructor in 2022 and led key features for the “Culture Monitor” project, enhancing job seeker dashboards with personalized surveys and data visualizations (under NDA). Completed a Computer Programming diploma at Algonquin College (May 2025), open to part-time roles now and full-time opportunities.
-    </p>
-    <p class="tagline">Software Developer | Problem Solver</p>
-  </section>
-
-  <section id="projects">
-    <h2>projects.</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>BudjetBuddy</h3>
-        <p>Hostel booking web app with dynamic pricing and management.</p>
-        <p><b>Tools: </b>Python, Django, SQL</p>
-        <a href="https://github.com/Aswinksanthosh/Project_1_Hostel_Booking/blob/main/README.md" target="_blank">View Project</a>
-      </div>
-      <div class="project-card">
-        <h3>Artistic Profiles</h3>
-        <p>Platform to showcase and manage artist profiles with ease.</p>
-        <p><b>Tools: </b>WixStudio, Wix code</p>
-        <a href="https://github.com/Aswinksanthosh/github-portfolio/blob/main/Artistic%20Profiles/Readme.md" target="_blank">View Project</a>
-      </div>
-
-        <div class="project-card">
-          <h3>n8n Auto-Scheduler(In Progress)</h3>
-          <!-- <p>Automated Google Calendar scheduling with intelligent time-blocking and conflict resolution.</p><p><b>Tools:</b> n8n-Workflow, Google Api</p> <a href="#">View Project</a> </div> -->
-        </div>
-  </section>
-
-  <section id="skills">
-    <h2>skills.</h2>
-    <ul class="skills-list">
-      <li>Full Stack Dev.</li>
-      <li>Java</li>
-      <li>Python</li>
-      <li>PHP</li>
-      <li>WordPress Plugins</li>
-      <li>Database Management</li>
-      <li>Django</li>
-      <li>Flutter</li>
-      <li>Git & GitHub</li>
-      <li>Wix Studio</li>
-      <li>API Integration</li>
-      <li>REST</li>
-      <li>Data Analysis</li>
-      <li>Data Cleaning</li>
-      <li>Data Visualization</li>
-    </ul>
-  </section>
-
-  <section id="experience">
-    <h2>experience.</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>Culture Monitor (WordPress)</h3>
-        <p>Created custom backend plugins for metadata management, and graphing tools for client projects.</p>
-        <span class="exp-date">Sep 2024 - Dec 2024</span>
-      </div>
-      <div class="project-card">
-        <h3>Python Tutor | SOFTEN TECHNOLOGIES</h3>
-        <p>Guided students through assignments and projects while ensuring concept clarity and subject mastery.</p>
-        <span class="exp-date">Aug 2022 - Oct 2022</span>
-      </div>
+  <!-- Unified Top Navbar with "My Projects" label (now larger) -->
+  <div class="navbar">
+    <span class="logo">AS.</span>
+    <div class="nav-links">
+      <a href="#about" data-order="0" class="active-link">About</a>
+      <a href="#skills" data-order="1">Skills</a>
+      <a href="#experience" data-order="2">Work</a>
+      <a href="#contact" data-order="3">Contact</a>
     </div>
-  </section>
-
-  <section id="education">
-    <h2>education.</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>Adv. Diploma in Computer Science</h3>
-        <p>Algonquin College</p>
-        <span class="edu-date">May 2023 - Apr 2025</span>
-      </div>
-      <div class="project-card">
-        <h3>Python Programming | Certification</h3>
-        <p>SOFTEN TECHNOLOGIES Institute</p>
-        <span class="edu-date">Jan 2022 - Dec 2022</span>
-      </div>
+    <span class="divider"></span>
+    <div class="nav-links">
+      <span class="projects-label">My Projects:</span>
+      <a href="#view-project1" data-order="4">n8n</a>
+      <a href="#view-project2" data-order="5">Budget</a>
+      <a href="#view-project3" data-order="6">Artistic</a>
     </div>
-  </section>
-
-<section id="contact">
-  <h2>contact.</h2>
-    <p>Email: <a href="mailto:aswinksanthosh000@gmail.com">aswinksanthosh000@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/aswin-k-santhosh-15557a245">aswin-k-santhosh</a></p>
-    <p>GitHub: <a href="https://github.com/Aswinksanthosh">Aswinksanthosh</a></p>
-
-  <div class="contact-wrapper">
-      <form id="contact-form" class="form-horizontal" action="https://api.web3forms.com/submit" method="POST" id="form">
-        <input type="hidden" name="access_key" value="849d2afd-7239-4428-9c99-40bd74cde3a0" />
-      <div class="form-group">
-        <div class="col-sm-12">
-          <input type="text" class="form-control" id="name" placeholder="NAME" name="name" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-12">
-          <input type="email" class="form-control" id="email" placeholder="EMAIL" name="_replyto" required>
-        </div>
-      </div>
-      <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
-      <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
-        <div class="alt-send-button">
-          <i class="fa fa-paper-plane"></i>
-          <span class="send-text">SEND</span>
-        </div>
-      </button>
-    </form>
   </div>
-</section>
-  <footer>
-    <p>&copy; 2025 Aswin Santhosh</p>
-  </footer>
 
-  <script src="script.js"></script>
+  <main>
+    <!-- HOME VIEW -->
+    <div id="view-home" class="page-view active">
+      <section id="about">
+        <h2 class="section-label">/ hello world</h2>
+        <h1 class="name-highlight">aswin<br><span class="italic-text">santhosh</span><span class="dot">.</span></h1>
+        <div class="glass-card" style="margin-top: 5rem;">
+          <p style="font-size: 1.6rem; font-weight: 300; margin: 0; color: var(--text); line-height: 1.8;">
+            I'm a <span style="font-weight: 500; background: var(--primary); padding: 4px 12px; border-radius: 8px;">backend architect</span> and automation specialist. I build robust Python backends, automate workflows with <strong>n8n</strong>, and create full‑stack web apps (<strong>Django</strong>) and no‑code solutions (<strong>Wix/Velo</strong>). I've led features for the "Culture Monitor" project (under NDA) and mentored students in Python. Graduating from Algonquin College in May 2025.
+          </p>
+          <div style="margin-top: 4rem; display: flex; align-items: center; gap: 24px; color: var(--secondary); font-weight: 600; letter-spacing: 4px; font-size: 0.85rem;">
+            <span>ALGONQUIN '25</span>
+            <span style="width: 40px; height: 2px; background: var(--text); border-radius: 2px;"></span>
+            <span>PYTHON SPECIALIST</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2 class="section-label">/ stack</h2>
+        <div style="max-width: 850px;">
+          <div class="skills-pill">Python / Django</div>
+          <div class="skills-pill">n8n Automation</div>
+          <div class="skills-pill">PostgreSQL</div>
+          <div class="skills-pill">Google APIs</div>
+          <div class="skills-pill">Wix Studio / Velo</div>
+          <div class="skills-pill">API Architecture</div>
+          <div class="skills-pill">Flutter</div>
+          <div class="skills-pill">Git / CI-CD</div>
+          <div class="skills-pill">Data Vis</div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2 class="section-label">/ history</h2>
+        <div class="project-grid">
+          <div class="mini-card">
+            <h3 style="margin: 0 0 16px 0; color: var(--text); font-size: 1.6rem;">Culture Monitor</h3>
+            <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6;">Custom WordPress backend plugins, metadata management, and data graphing for client dashboards (NDA).</p>
+            <div style="margin-top: 24px; font-weight: 600; color: var(--secondary); letter-spacing: 3px;">2024</div>
+          </div>
+          <div class="mini-card">
+            <h3 style="margin: 0 0 16px 0; color: var(--text); font-size: 1.6rem;">Python Tutor</h3>
+            <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6;">Guided students through algorithmic logic and project mentorship at SOFTEN TECHNOLOGIES.</p>
+            <div style="margin-top: 24px; font-weight: 600; color: var(--secondary); letter-spacing: 3px;">2022</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 class="section-label">/ reach out</h2>
+        <div class="glass-card">
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="849d2afd-7239-4428-9c99-40bd74cde3a0" />
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <input type="text" class="form-control" placeholder="Name" name="name" required>
+              <input type="email" class="form-control" placeholder="Email" name="email" required>
+            </div>
+            <textarea class="form-control" rows="5" placeholder="Your vision..." name="message" required></textarea>
+            <button class="btn-submit" type="submit">Deploy Message</button>
+          </form>
+          <div style="margin-top: 4rem; display: flex; gap: 40px; justify-content: center;">
+            <a href="https://github.com/Aswinksanthosh" target="_blank" style="color: var(--text); font-weight: 600; text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; transition: color 0.3s; letter-spacing: 2px;">GITHUB</a>
+            <a href="https://linkedin.com/in/aswin-k-santhosh-15557a245" target="_blank" style="color: var(--secondary); font-weight: 600; text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; transition: color 0.3s; letter-spacing: 2px;">LINKEDIN</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PROJECT 1: n8n Auto‑Scheduler (Unique features highlighted) -->
+    <div id="view-project1" class="page-view">
+      <section>
+        <h2 class="section-label">/ automation</h2>
+        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">n8n auto-scheduler</h1>
+
+        <!-- Ad-style pitch with ADHD-friendly note -->
+        <div class="pitch-banner">
+          ⏰ <span class="highlight">Stop micromanaging your calendar</span> — let AI do it. <br/>
+          <span style="font-size: 1rem; font-weight: 400;">Daily auto‑scheduling with your custom rules. Works while you sleep.<br/>✨ <strong>ADHD‑friendly:</strong> Only use what you need, no extra apps, just your regular calendar.</span>
+        </div>
+
+        <!-- ⚡ System Flow mini-card -->
+        <h3 style="font-size: 1.5rem; margin: 2rem 0 1rem;">⚡ Automation Flow</h3>
+        <div class="flow-card">
+          <span class="flow-step">📋 Google Sheets</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">⚙️ Scheduling</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">📅 Calendar</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">🔗 Webhooks</span>
+        </div>
+
+        <!-- Condensed "How it works" story – corrected to reflect that all-day tasks come from calendar, not sheets -->
+        <div class="glass-card" style="padding: 2.5rem; margin-top: 2rem;">
+          <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">📖 How your calendar becomes your personal assistant</h3>
+          <div>
+            <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
+              <span class="highlight">Every morning</span>, your all‑day tasks from your calendar are <span class="highlight">automatically converted</span> into timed events, guided by the rules you've set in Google Sheets. They're placed into free slots – respecting your fixed meetings.
+            </p>
+            <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
+              You set the rules: <span class="highlight">buffers, avoid‑events, time windows</span> – and the scheduler obeys without question.
+            </p>
+            <ul class="detail-list" style="margin-top: 2rem; font-size: 1.1rem;">
+              <li>✨ <strong>Recurring patterns</strong> like “every weekday at 10am” – just write it once.</li>
+              <li>🔄 <strong>Two‑way sync</strong> with Google Sheets – changes in the sheet update the calendar, and vice versa. The same data lives in both places, always in sync.</li>
+              <li>🔗 <strong>Clickable webhook links</strong> inside event descriptions – mark tasks as <span class="highlight">FINISHED</span>, <span class="highlight">POSTPONE</span>, or <span class="highlight">COMPRESS</span> without leaving Google Calendar. Pure API magic, no extra tools needed.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Friendly tip box: real-world example (updated to highlight dependencies) -->
+        <div class="tip-box">
+          💡 <strong>Real‑world example:</strong> Imagine your afternoon is like a train – if one meeting runs late, everything behind it gets delayed. The <strong>Connect your events</strong> engine automatically shifts your tasks like a railway dispatcher, but more importantly, it enforces <strong>smart dependencies</strong>: “Gym must be after Work”, “No gym within 4 hours of sleep”, “Cooking before Eating”. Your schedule flows like a story, not a jumble.
+        </div>
+
+        <!-- Core engine cards (Scheduling, Connect your events, CRUD, One-Click) -->
+        <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">⚙️ Core engines</h3>
+        <div class="engine-cards">
+          <div class="engine-card">
+            <img src="sched.png" alt="Scheduling Engine" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <h4>⏰ Scheduling Engine</h4>
+            <p>Converts all‑day tasks into timed events, finds free slots, handles custom time formats.</p>
+            <button class="detail-btn" onclick="openFeatureModal('scheduling')">🔍 Details</button>
+          </div>
+          <div class="engine-card">
+            <img src="post.png" alt="Connect your events engine" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <h4>🔗 Connect your events</h4>
+            <p>Smart dependency rules – chain events like 'Gym after Work' or enforce buffers between activities. No more manual reshuffling.</p>
+            <button class="detail-btn" onclick="openFeatureModal('dependencies')">🔍 Details</button>
+          </div>
+          <div class="engine-card">
+            <img src="sheets.png" alt="CRUD Sync" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <h4>🔄 CRUD Sync</h4>
+            <p>Bidirectional sync: changes in sheets ↔ changes in calendar descriptions. The same data, two places, always consistent.</p>
+            <button class="detail-btn" onclick="openFeatureModal('crud')">🔍 Details</button>
+          </div>
+          <div class="engine-card">
+            <div class="emoji-icon">🔗</div>
+            <h4>One‑Click Control</h4>
+            <p>FINISH, POSTPONE, COMPRESS links inside event descriptions – update events without leaving calendar.</p>
+            <button class="detail-btn" onclick="openFeatureModal('webhook')">🔍 Details</button>
+          </div>
+        </div>
+
+        <!-- Customisation section -->
+        <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">🎨 Customisation – Your Rules, Your Way</h3>
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: -1.5rem; margin-bottom: 2rem;">
+          Customise how your events react in either sheets or within calendar descriptions.
+        </p>
+        <div class="engine-cards">
+          <!-- Card 1: Google Sheets -->
+          <div class="engine-card">
+            <div class="emoji-icon">📋</div>
+            <img src="sheet.png" alt="Google Sheets configuration" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <h4>Configure in Google Sheets</h4>
+            <p>All your rules live in a simple sheet. Edit on any device – changes sync instantly.</p>
+            <button class="detail-btn" onclick="openCustomModal('sheets')">🔍 Details</button>
+          </div>
+          <!-- Card 2: Calendar Descriptions -->
+          <div class="engine-card">
+            <div class="emoji-icon">📝</div>
+            <img src="CalDesc.png" alt="Calendar description with webhook links" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <h4>Tweak Inside Calendar</h4>
+            <p>Modify event rules directly in the description – buffers, avoid‑events, dependencies. No sheet needed.</p>
+            <button class="detail-btn" onclick="openCustomModal('calendar')">🔍 Details</button>
+          </div>
+        </div>
+
+        <!-- See it in action (now 3 images, webhook removed) -->
+        <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">📸 See it in action</h3>
+        <div class="photo-grid">
+          <div class="photo-item">
+            <img src="before.png" alt="Before scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">📅 Before</span>
+          </div>
+          <div class="photo-item">
+            <img src="after.png" alt="After scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">📅 After Scheduling</span>
+          </div>
+          <div class="photo-item">
+            <img src="CalDesc.png" alt="Calendar description" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">📝 Calendar Description</span>
+          </div>
+        </div>
+
+        <!-- Technical Deep‑Dive (highlighted) -->
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleDeepDive()">
+            <span>🔬✨ Technical Deep‑Dive ✨🔬</span>
+            <span class="arrow" id="deepDiveArrow">▼</span>
+          </div>
+          <div class="collapsible-content" id="deepDiveContent">
+            <h3>📸 Workflow Snapshots</h3>
+            <div class="workflow-snapshots">
+              <div class="snapshot-card">
+                <img src="sheet.png" alt="Google Sheets config" onclick="openLightbox(this.src, this.alt)">
+                <h4>1. Google Sheets</h4>
+                <p>All tasks and rules are defined here. Each row = one task with JSON configuration.</p>
+              </div>
+              <div class="snapshot-card">
+                <img src="sched.png" alt="Scheduling node" onclick="openLightbox(this.src, this.alt)">
+                <h4>2. Scheduling Engine</h4>
+                <p>Converts all‑day tasks into timed events, finds free slots, handles custom formats.</p>
+              </div>
+              <div class="snapshot-card">
+                <img src="CalDesc.png" alt="Calendar description" onclick="openLightbox(this.src, this.alt)">
+                <h4>3. Calendar & Webhooks</h4>
+                <p>Events appear in your calendar with clickable links for instant control.</p>
+              </div>
+            </div>
+
+            <h3>🚀 Main Workflow Components</h3>
+            <div class="component-grid">
+              <div class="component-card">
+                <h4>⏰ Scheduling Node</h4>
+                <p><span class="highlight">Why it's important:</span> Automates the tedious task of scheduling, ensuring tasks get done at the right time without conflicts.</p>
+                <p><span class="highlight">Background magic:</span> Every 5 minutes, it scans Google Sheets for all‑day tasks. For each task, it parses the configuration (<code>ideal_time</code>, <code>duration</code>, <code>movable</code>, <code>priority</code>). It then checks existing calendar events to avoid duplicates (same task on same date). Using a smart algorithm, it tries the ideal time first, then searches forward/backward in 15‑min increments until a free slot is found. It respects priorities and constraints like buffers and time windows – all while logging every step for transparency.</p>
+              </div>
+              <div class="component-card">
+                <h4>🔗 Connect your events (Dependency Engine)</h4>
+                <p><span class="highlight">Why it's important:</span> Ensures your events respect real‑world relationships – like “Gym must be after Work” or “No gym within 4 hours of sleep”. It's the brain that keeps your day logical.</p>
+                <p><span class="highlight">Background magic:</span> This node runs periodically to resolve conflicts and enforce dependencies. It analyses all timed events, identifies movable ones, and builds chains. It respects complex rules: <strong>buffers</strong> (gaps before/after), <strong>avoid‑events</strong> (never schedule near certain meetings), <strong>time windows</strong>, and <strong>dependencies</strong> like <code>after_end</code>, <code>before_start</code>, and custom gaps. The algorithm uses a priority‑based system and logs every shift. Think of it as a railway dispatcher that also ensures trains leave only after passengers have boarded.</p>
+              </div>
+              <div class="component-card">
+                <h4>🔄 CRUD Node</h4>
+                <p><span class="highlight">Why it's important:</span> Keeps everything consistent; manual commands allow you to override automation when needed.</p>
+                <p><span class="highlight">Background magic:</span> This node performs bidirectional sync between Google Sheets and Calendar. It detects changes in either system (by comparing descriptions or sheet rows) and propagates updates. It also processes manual commands typed in calendar descriptions: <code>COMMAND: CREATE</code> adds a new sheet entry, <code>COMMAND: DELETE</code> removes it. It validates time/duration inputs and even shows errors right in the description – so you always know if something's wrong.</p>
+              </div>
+              <div class="component-card">
+                <h4>🔗 Webhook Handler</h4>
+                <p><span class="highlight">Why it's important:</span> One‑click control from inside your calendar – instant actions without switching apps.</p>
+                <p><span class="highlight">Background magic:</span> When you click a link in an event description (FINISH, POSTPONE, COMPRESS), an HTTP POST request is sent to an n8n webhook. The webhook identifies the event ID and action, then calls the Google Calendar API to update the event: marking it done (adds ✅ to title), shifting it by the specified minutes, or reducing its duration. All changes appear in your calendar immediately – no extra tools, no manual editing.</p>
+              </div>
+            </div>
+
+            <h3>System Architecture</h3>
+            <div style="background: #0F172A; color: #38BDF8; padding: 2.5rem; border-radius: 20px; font-family: monospace; overflow-x: auto; line-height: 1.5; font-size: 0.9rem; margin-bottom: 2rem; box-shadow: inset 0 4px 20px rgba(0,0,0,0.5);">
+<pre style="margin: 0;">
+[Timer/Manual Trigger]
+       │
+       ▼
+┌─────────────────────┐
+│ Google Calendar     │
+│ (Primary & Secondary│
+│ Calendars)          │
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│ Google Sheets       │
+│ (Task Configs)      │
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│ CRUD Sync Node      │ ← syncs all‑day events with sheet configs
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│ Scheduling Node     │ ← FindandFillTheSlots
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│ Dependency Engine   │ ← enforces chains, buffers, avoid‑rules
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│ Webhook Handler     │ ← listens for FINISH / POSTPONE / COMPRESS clicks
+└─────────────────────┘
+</pre>
+            </div>
+
+            <h3>Tech Stack</h3>
+            <div class="tech-stack">
+              <span>n8n</span><span>Google Calendar API</span><span>Google Sheets API</span><span>JavaScript (ES6+)</span><span>OAuth 2.0</span><span>Webhooks</span>
+            </div>
+
+            <h3>Challenges & Solutions</h3>
+            <ul class="detail-list">
+              <li><strong>Timezone mismatches:</strong> Normalised all event times to a single target timezone (America/Toronto) using <code>toLocaleString</code> with <code>timeZone</code>.</li>
+              <li><strong>Duplicate event creation:</strong> Introduced a <code>cleanTaskName()</code> function to strip flags and prefixes before duplicate detection.</li>
+              <li><strong>Complex dependency handling:</strong> Built a constraints engine that respects buffer times, avoid‑event rules, time windows, and relationships like "after_end" and "before_start".</li>
+              <li><strong>Manual overrides without extra tools:</strong> Embedded webhook links directly in event descriptions – clicking them sends an API request to n8n, updating the calendar instantly.</li>
+            </ul>
+          </div>
+        </div>
+
+        <a class="back-btn" onclick="switchView('home', 'about', 0)">← Return to Base</a>
+      </section>
+    </div>
+
+    <!-- PROJECT 2: BudjetBuddy (unchanged) -->
+    <div id="view-project2" class="page-view">
+      <section>
+        <h2 class="section-label">/ web engine</h2>
+        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">budjet buddy</h1>
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1.5rem;">Hostel booking web app with dynamic pricing and management.</p>
+        <div class="glass-card" style="margin-top: 3rem; padding: 4rem;">
+          <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h3>
+          <p style="color: var(--text-muted); line-height: 1.8;">BudjetBuddy is a full‑stack web application built with <strong>Django</strong> that simplifies hostel booking. It features a dynamic pricing engine that adjusts rates based on demand, an interactive booking calendar, and an admin dashboard for managing reservations, payments, and user data. The project demonstrates my ability to build scalable, data‑driven web applications.</p>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Key Features</h3>
+          <ul class="detail-list">
+            <li><strong>Dynamic Pricing:</strong> Prices automatically adjust based on occupancy, seasonality, and booking lead time.</li>
+            <li><strong>Booking Calendar:</strong> Interactive calendar showing real‑time availability.</li>
+            <li><strong>User Dashboard:</strong> Personalized dashboards for guests and admins.</li>
+            <li><strong>Payment Integration:</strong> Secure Stripe payments with automatic invoices.</li>
+          </ul>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Tech Stack</h3>
+          <div class="tech-stack">
+            <span>Python</span><span>Django</span><span>PostgreSQL</span><span>Bootstrap</span><span>Stripe API</span>
+          </div>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Challenges & Solutions</h3>
+          <ul class="detail-list">
+            <li><strong>Dynamic pricing algorithm:</strong> Implemented a rule‑based system with configurable parameters stored in the database.</li>
+            <li><strong>Concurrent booking conflicts:</strong> Used database transactions with <code>select_for_update()</code> to prevent double‑bookings.</li>
+            <li><strong>Admin analytics dashboard:</strong> Pre‑computed daily statistics with Django management commands.</li>
+          </ul>
+          <a class="back-btn" onclick="switchView('home', 'about', 0)">← Return to Base</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- PROJECT 3: Artistic Profiles (unchanged) -->
+    <div id="view-project3" class="page-view">
+      <section>
+        <h2 class="section-label">/ creative</h2>
+        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">artistic profiles</h1>
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1.5rem;">Platform to showcase and manage artist profiles with ease.</p>
+        <div class="glass-card" style="margin-top: 3rem; padding: 4rem;">
+          <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h3>
+          <p style="color: var(--text-muted); line-height: 1.8;">Artistic Profiles is a no‑code / low‑code solution built on <strong>Wix Studio</strong> using Velo (Wix's JavaScript framework). It empowers artists to easily build and manage their online presence with customizable templates, image galleries, and integrated contact forms.</p>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Key Features</h3>
+          <ul class="detail-list">
+            <li><strong>Custom Profile Builder:</strong> Artists can personalize layouts, colors, and fonts without code.</li>
+            <li><strong>Dynamic Galleries:</strong> Upload and arrange artwork images in responsive galleries.</li>
+            <li><strong>Client Inquiry System:</strong> Built‑in contact forms that send messages directly to the artist's email.</li>
+            <li><strong>SEO Optimization:</strong> Meta tags, sitemaps, and fast loading for better visibility.</li>
+          </ul>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Tech Stack</h3>
+          <div class="tech-stack">
+            <span>Wix Studio</span><span>Velo (JS)</span><span>Wix Data API</span><span>REST APIs</span>
+          </div>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Challenges & Solutions</h3>
+          <ul class="detail-list">
+            <li><strong>Customizing Wix templates:</strong> Used Velo to inject custom CSS and override default behaviors.</li>
+            <li><strong>Image optimization:</strong> Leveraged Wix's built‑in media manager and lazy loading.</li>
+            <li><strong>Reliable contact forms:</strong> Built a custom backend module using Velo web modules to send emails via SMTP.</li>
+          </ul>
+          <a class="back-btn" onclick="switchView('home', 'about', 0)">← Return to Base</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Feature Detail Modal -->
+  <div id="featureModal" class="feature-modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeFeatureModal()">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightboxImg">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    </div>
+  </div>
+
+  <script>
+    let currentOrder = 0;
+    let currentViewId = 'home';
+    let isAnimating = false;
+
+    function switchView(viewId, targetSectionId, newOrder) {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const currentView = document.getElementById('view-' + currentViewId);
+      const targetView = document.getElementById('view-' + viewId);
+
+      if (viewId === currentViewId) {
+        // Just scroll to section within the same view
+        isAnimating = false;
+        if (targetSectionId) {
+          setTimeout(() => {
+            const target = document.getElementById(targetSectionId);
+            if (target) {
+              const offset = 120;
+              const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
+              window.scrollTo({ top: targetPos, behavior: 'smooth' });
+            }
+          }, 50);
+        }
+        return;
+      }
+
+      // Determine direction for outgoing animation
+      const goingForward = newOrder > currentOrder;
+      const outClass = goingForward ? 'slide-out-left' : 'slide-out-right';
+      currentView.classList.add(outClass);
+      
+      setTimeout(() => {
+        currentView.classList.remove('active', 'slide-out-left', 'slide-out-right');
+        
+        const direction = goingForward ? 'slide-right' : 'slide-left';
+        targetView.classList.add('active', direction);
+        
+        currentOrder = newOrder;
+        currentViewId = viewId;
+
+        document.querySelectorAll('.navbar a').forEach(a => {
+          a.classList.remove('active-link');
+          if(parseInt(a.getAttribute('data-order')) === newOrder) {
+            a.classList.add('active-link');
+          }
+        });
+
+        if (targetSectionId) {
+          setTimeout(() => {
+            const target = document.getElementById(targetSectionId);
+            if (target) {
+              const offset = 120;
+              const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
+              window.scrollTo({ top: targetPos, behavior: 'smooth' });
+            }
+          }, 50);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        isAnimating = false;
+      }, 350);
+    }
+
+    // Intersection Observer for home sections
+    const observerOptions = {
+      root: null,
+      threshold: 0.5
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+      if (currentViewId !== 'home') return;
+      
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute('id');
+          const activeLink = document.querySelector(`.navbar a[href="#${currentId}"]`);
+          
+          if (activeLink) {
+            document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active-link'));
+            activeLink.classList.add('active-link');
+            currentOrder = parseInt(activeLink.getAttribute('data-order'));
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('#view-home section').forEach(section => {
+      scrollObserver.observe(section);
+    });
+
+    // Navbar click handlers
+    document.querySelectorAll('.navbar a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        const order = parseInt(this.getAttribute('data-order'));
+        
+        if (href.startsWith('#view-project')) {
+          switchView(href.replace('#view-', ''), null, order);
+        } else if (href.startsWith('#')) {
+          // If already in home view, just scroll directly (no animation)
+          if (currentViewId === 'home') {
+            const targetId = href.substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+              const offset = 120;
+              const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
+              window.scrollTo({ top: targetPos, behavior: 'smooth' });
+            }
+            // Update active link
+            document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active-link'));
+            this.classList.add('active-link');
+            currentOrder = order;
+          } else {
+            // Switch to home view and scroll
+            switchView('home', href.substring(1), order);
+          }
+        }
+      });
+    });
+
+    // Lightbox functionality
+    function openLightbox(src, alt) {
+      const overlay = document.getElementById('lightboxOverlay');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      img.alt = alt;
+      overlay.classList.add('active');
+    }
+    window.openLightbox = openLightbox; // make accessible from inline onclick
+
+    function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.remove('active');
+    }
+
+    document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
+      if (e.target === this || e.target.classList.contains('lightbox-close')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeFeatureModal();
+      }
+    });
+
+    // Feature modal for core engines
+    const modal = document.getElementById('featureModal');
+    const modalContent = document.getElementById('modalContent');
+
+    function openFeatureModal(feature) {
+      let content = '';
+      let imageHtml = '';
+      if (feature === 'scheduling') {
+        imageHtml = `<img src="sched.png" alt="Scheduling Engine" class="modal-image">`;
+        content = `
+          <h3>⏰ Scheduling Engine</h3>
+          ${imageHtml}
+          <p>Converts all‑day tasks into timed events with smart placement.</p>
+          <h4>How it works:</h4>
+          <ul>
+            <li>Reads tasks from Google Sheets (all‑day events).</li>
+            <li>Parses configuration: <code>ideal_time</code>, <code>duration</code>, <code>movable</code>, <code>priority</code>.</li>
+            <li>Checks existing calendar events to avoid duplicates (same task, same date).</li>
+            <li>Finds free slots: tries ideal time first, then later/earlier slots in 15‑min increments.</li>
+            <li>Supports time formats like "1pm", "3:45pm" and duration formats like "1h", "1:30h", "90".</li>
+          </ul>
+          <h4>Example config:</h4>
+          <pre>{
+  "ideal_time": "6pm",
+  "movable": true,
+  "priority": 2,
+  "duration": "1.5h"
+}</pre>
+        `;
+      } else if (feature === 'dependencies') {
+        imageHtml = `<img src="post.png" alt="Dependency Engine" class="modal-image">`;
+        content = `
+          <h3>🔗 Connect your events (Dependency Engine)</h3>
+          ${imageHtml}
+          <p>Enforces real‑world relationships between events – like “Gym after Work” or “No gym within 4 hours of sleep”.</p>
+          <h4>Constraint system:</h4>
+          <ul>
+            <li><strong>Buffers:</strong> <code>buffer_before</code>, <code>buffer_after</code> (minutes).</li>
+            <li><strong>Avoid‑events:</strong> Never schedule near specific events (e.g., "team sync").</li>
+            <li><strong>Time windows:</strong> Restrict to absolute (e.g., "9am-5pm") or relative (e.g., after sunset).</li>
+            <li><strong>Dependencies:</strong> Chain events with rules like "after_end", "before_start", and custom gaps (e.g., Gym must start after Work ends + 30 min).</li>
+          </ul>
+          <h4>Example config:</h4>
+          <pre>{
+  "constraints": {
+    "buffer_before": 15,
+    "buffer_after": 30,
+    "avoid_events": [{"event_name": "Sleep", "gap_before": 240}],
+    "dependencies": [{"event_name": "Work", "relation": "after_end", "gap": 30}],
+    "time_windows": [{"absolute": "3pm-8pm"}]
+  }
+}</pre>
+        `;
+      } else if (feature === 'crud') {
+        imageHtml = `<img src="sheets.png" alt="CRUD Sync" class="modal-image">`;
+        content = `
+          <h3>🔄 CRUD Sync</h3>
+          ${imageHtml}
+          <p>Bidirectional sync between Google Calendar and Google Sheets – same data, two places.</p>
+          <h4>Features:</h4>
+          <ul>
+            <li>📋 flag system – events with a sheet entry get a 📋 prefix in title.</li>
+            <li>Detects changes in calendar descriptions and updates sheet, and vice versa.</li>
+            <li>Manual commands: <code>COMMAND: CREATE</code> and <code>COMMAND: DELETE</code> in event description.</li>
+            <li>Validates time/duration inputs and shows errors in description.</li>
+          </ul>
+        `;
+      } else if (feature === 'webhook') {
+        imageHtml = `<div class="img-placeholder small" style="max-width:100px; margin-bottom:1rem;">🔗 Webhook</div>`;
+        content = `
+          <h3>🔗 One‑Click Control</h3>
+          ${imageHtml}
+          <p>Webhook links embedded in event descriptions for instant manual overrides.</p>
+          <h4>How it works:</h4>
+          <ul>
+            <li>Each movable event gets three clickable links: <strong>FINISH</strong>, <strong>POSTPONE</strong>, <strong>COMPRESS</strong>.</li>
+            <li>Clicking sends an HTTP request to n8n, which updates the event via Google Calendar API.</li>
+            <li>No extra tools – everything happens inside your calendar.</li>
+          </ul>
+          <h4>Example description:</h4>
+          <pre>✅ FINISH: https://hook.n8n.edu/finish/abc123
+⏸️ POSTPONE 15min: https://hook.n8n.edu/postpone/abc123
+🗜️ COMPRESS: https://hook.n8n.edu/compress/abc123</pre>
+        `;
+      }
+      modalContent.innerHTML = content;
+      modal.classList.add('active');
+    }
+
+    // Customisation modals
+    function openCustomModal(type) {
+      let content = '';
+      if (type === 'sheets') {
+        content = `
+          <h3>📋 Configure in Google Sheets</h3>
+          <img src="sheet.png" alt="Google Sheets" class="modal-image">
+          <p>All your rules live in a simple Google Sheet. Edit on any device – changes sync instantly.</p>
+          <h4>What you can set:</h4>
+          <ul>
+            <li><strong>ideal_time</strong> – preferred start time (e.g., "6pm")</li>
+            <li><strong>duration</strong> – length of event ("1h", "1:30h")</li>
+            <li><strong>movable</strong> – true/false</li>
+            <li><strong>priority</strong> – 1 (low) to 5 (high)</li>
+            <li><strong>constraints</strong> – buffers, avoid‑events, time windows, dependencies</li>
+          </ul>
+          <h4>Example row:</h4>
+          <pre>Task Name | Priority | Configuration (JSON)
+GYM       | 2        | {"ideal_time":"6pm","movable":true,"duration":"1.5h","constraints":{"buffer_before":15}}</pre>
+        `;
+      } else if (type === 'calendar') {
+        content = `
+          <h3>📝 Tweak Inside Calendar</h3>
+          <img src="CalDesc.png" alt="Calendar description" class="modal-image">
+          <p>Modify event rules directly in the calendar description – no sheet needed.</p>
+          <h4>How it works:</h4>
+          <ul>
+            <li>Edit the description of any movable event.</li>
+            <li>Use simple key‑value lines: <code>Ideal Time: 6pm</code>, <code>Duration: 1.5h</code>, <code>Buffers: 15,30</code>.</li>
+            <li>Changes are synced back to the sheet automatically.</li>
+            <li>Perfect for quick tweaks from your phone.</li>
+          </ul>
+          <h4>Example description:</h4>
+          <pre>Ideal Time: 6pm
+Duration: 1.5h
+Buffers: 15,30
+Avoid: team sync</pre>
+        `;
+      }
+      modalContent.innerHTML = content;
+      modal.classList.add('active');
+    }
+
+    function closeFeatureModal() {
+      modal.classList.remove('active');
+    }
+
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeFeatureModal();
+      }
+    });
+
+    // Collapsible technical deep-dive
+    function toggleDeepDive() {
+      const content = document.getElementById('deepDiveContent');
+      const arrow = document.getElementById('deepDiveArrow');
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        arrow.innerHTML = '▼';
+      } else {
+        content.classList.add('expanded');
+        arrow.innerHTML = '▲';
+      }
+    }
+  </script>
+  <!-- Gemini prompts (copy these to use) 
+   1. "Rewrite this portfolio introduction to be more engaging and highlight my skills as a backend architect and automation specialist: [insert current text]"
+   2. "Generate compelling bullet points for the n8n Auto-Scheduler project focusing on the unique features like webhook controls and constraint-based scheduling."
+   3. "Create a short, punchy tagline for my portfolio that combines backend architecture, automation, and no‑code solutions."
+   4. "Improve the readability of this technical description while keeping all key details: [insert any dense paragraph]"
+   5. "Suggest emoji placements and formatting improvements for this project section to make it more visually appealing: [paste section]"
+  -->
 </body>
 </html>
