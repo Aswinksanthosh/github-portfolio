@@ -119,9 +119,22 @@
       font-weight: 700;
       color: var(--secondary);
       text-transform: uppercase;
-      font-size: 1rem;
+      font-size: 1.1rem;
       letter-spacing: 1.5px;
-      margin-right: 4px;
+      margin-right: 8px;
+    }
+
+    /* Make project links stand out as buttons */
+    .navbar a[href^="#view-project"] {
+      background: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 10px 20px;
+      font-weight: 600;
+    }
+    .navbar a[href^="#view-project"]:hover {
+      background: var(--primary);
+      border-color: var(--primary-dark);
+      transform: scale(1.05);
     }
 
     /* Adjust main padding for fixed navbar */
@@ -820,7 +833,7 @@
         font-size: 0.85rem;
       }
       .projects-label {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
       }
       main { padding-top: 100px; }
       section { padding: 120px 24px 100px 24px; }
@@ -828,7 +841,7 @@
   </style>
 </head>
 <body>
-  <!-- Unified Top Navbar with "My Projects" label (now larger) -->
+  <!-- Unified Top Navbar with "Check out my projects" label and button‑like project links -->
   <div class="navbar">
     <span class="logo">AS.</span>
     <div class="nav-links">
@@ -839,7 +852,7 @@
     </div>
     <span class="divider"></span>
     <div class="nav-links">
-      <span class="projects-label">My Projects:</span>
+      <span class="projects-label">🚀 Check out my projects:</span>
       <a href="#view-project1" data-order="4">n8n</a>
       <a href="#view-project2" data-order="5">Budget</a>
       <a href="#view-project3" data-order="6">Artistic</a>
@@ -915,7 +928,7 @@
       </section>
     </div>
 
-    <!-- PROJECT 1: n8n Auto‑Scheduler (Unique features highlighted) -->
+    <!-- PROJECT 1: n8n Auto‑Scheduler (Updated friendly text) -->
     <div id="view-project1" class="page-view">
       <section>
         <h2 class="section-label">/ automation</h2>
@@ -939,30 +952,29 @@
           <span class="flow-step">🔗 Webhooks</span>
         </div>
 
-        <!-- Condensed "How it works" story – corrected to reflect that all-day tasks come from calendar, not sheets -->
+        <!-- Condensed "How it works" story – now friendlier with more functions -->
         <div class="glass-card" style="padding: 2.5rem; margin-top: 2rem;">
           <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">📖 How your calendar becomes your personal assistant</h3>
           <div>
             <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
-              <span class="highlight">Every morning</span>, your all‑day tasks from your calendar are <span class="highlight">automatically converted</span> into timed events, guided by the rules you've set in Google Sheets. They're placed into free slots – respecting your fixed meetings.
-            </p>
-            <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
-              You set the rules: <span class="highlight">buffers, avoid‑events, time windows</span> – and the scheduler obeys without question.
+              <span class="highlight">Every morning</span>, your all‑day tasks (like "Gym" or "Cook") get magically converted into timed events, squeezed into free spots while respecting your fixed meetings. You're in control: set simple rules like <span class="highlight">"no gym within 4 hours of sleep"</span> or <span class="highlight">"buffer 15 min after work"</span>. The scheduler just follows them.
             </p>
             <ul class="detail-list" style="margin-top: 2rem; font-size: 1.1rem;">
-              <li>✨ <strong>Recurring patterns</strong> like “every weekday at 10am” – just write it once.</li>
-              <li>🔄 <strong>Two‑way sync</strong> with Google Sheets – changes in the sheet update the calendar, and vice versa. The same data lives in both places, always in sync.</li>
-              <li>🔗 <strong>Clickable webhook links</strong> inside event descriptions – mark tasks as <span class="highlight">FINISHED</span>, <span class="highlight">POSTPONE</span>, or <span class="highlight">COMPRESS</span> without leaving Google Calendar. Pure API magic, no extra tools needed.</li>
+              <li>✨ <strong>Recurring patterns</strong> – type "every weekday at 10am" once and it repeats forever.</li>
+              <li>🔄 <strong>Two‑way sync</strong> – change a rule in Google Sheets and it updates the calendar instantly. Edit in the calendar and the sheet syncs back. Same data, two places.</li>
+              <li>🔗 <strong>Clickable links inside event descriptions</strong> – mark tasks done, postpone, or compress without leaving Google Calendar. All from your phone too.</li>
+              <li>🚦 <strong>Smart dependencies</strong> – the system knows you need 30 min after eating before gym, and shifts everything like dominoes if one task runs late.</li>
+              <li>📱 <strong>Edit on the go</strong> – tweak rules directly in the calendar description on your phone. No app needed.</li>
             </ul>
           </div>
         </div>
 
-        <!-- Friendly tip box: real-world example (updated to highlight dependencies) -->
+        <!-- Friendly tip box: real-world example (updated) -->
         <div class="tip-box">
-          💡 <strong>Real‑world example:</strong> Imagine your afternoon is like a train – if one meeting runs late, everything behind it gets delayed. The <strong>Connect your events</strong> engine automatically shifts your tasks like a railway dispatcher, but more importantly, it enforces <strong>smart dependencies</strong>: “Gym must be after Work”, “No gym within 4 hours of sleep”, “Cooking before Eating”. Your schedule flows like a story, not a jumble.
+          💡 <strong>Real‑world example:</strong> The system knows you shouldn't eat 30 minutes before gym – so it never schedules your meal too close. And if one task runs late, it pushes everything else forward like a row of dominoes – automatically. You decide the rules, or let it be flexible. It's like having a personal assistant who just gets you.
         </div>
 
-        <!-- Core engine cards (Scheduling, Connect your events, CRUD, One-Click) -->
+        <!-- Core engine cards -->
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">⚙️ Core engines</h3>
         <div class="engine-cards">
           <div class="engine-card">
@@ -1015,7 +1027,7 @@
           </div>
         </div>
 
-        <!-- See it in action (now 3 images, webhook removed) -->
+        <!-- See it in action (3 images) -->
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">📸 See it in action</h3>
         <div class="photo-grid">
           <div class="photo-item">
@@ -1352,7 +1364,7 @@
       img.alt = alt;
       overlay.classList.add('active');
     }
-    window.openLightbox = openLightbox; // make accessible from inline onclick
+    window.openLightbox = openLightbox;
 
     function closeLightbox() {
       document.getElementById('lightboxOverlay').classList.remove('active');
