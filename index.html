@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <title>Aswin Santhosh | Backend Architect</title>
+  <!-- Vercel Analytics (replace with your actual ID) -->
+  <script defer src="https://va.vercel-scripts.com/v1/analytics.js" data-project-id="YOUR_VERCEL_ANALYTICS_ID"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Syne:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap');
 
@@ -29,6 +31,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-y: scroll; /* Prevents layout shift when scrollbar appears/disappears */
     }
 
     body {
@@ -46,8 +49,8 @@
       overflow-x: hidden;
     }
 
-    /* Unified Top Navbar */
-    .navbar {
+    /* ===== DESKTOP SINGLE NAVBAR (shown on >=901px) ===== */
+    .navbar-desktop {
       position: fixed;
       top: 24px;
       left: 50%;
@@ -65,11 +68,10 @@
       gap: 24px;
       width: auto;
       max-width: 95vw;
-      overflow-x: auto;
       white-space: nowrap;
     }
 
-    .navbar .logo {
+    .navbar-desktop .logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 1.5rem;
@@ -77,21 +79,21 @@
       margin-right: 8px;
     }
 
-    .navbar .divider {
+    .navbar-desktop .divider {
       width: 1px;
       height: 30px;
       background: rgba(0,0,0,0.1);
       margin: 0 8px;
     }
 
-    .nav-links {
+    .navbar-desktop .nav-links {
       display: flex;
       gap: 8px;
       flex-wrap: nowrap;
       align-items: center;
     }
 
-    .navbar a {
+    .navbar-desktop a {
       color: var(--text);
       text-decoration: none;
       font-weight: 500;
@@ -102,11 +104,11 @@
       cursor: pointer;
     }
 
-    .navbar a:hover {
+    .navbar-desktop a:hover {
       background: rgba(0, 0, 0, 0.05);
     }
 
-    .navbar a.active-link {
+    .navbar-desktop a.active-link {
       background: var(--primary);
       color: #000;
       box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 4px 10px rgba(0,0,0,0.1);
@@ -119,36 +121,185 @@
       font-weight: 700;
       color: var(--secondary);
       text-transform: uppercase;
-      font-size: 1.1rem;
+      font-size: 1rem;
       letter-spacing: 1.5px;
       margin-right: 8px;
     }
 
-    /* Make project links stand out as buttons */
-    .navbar a[href^="#view-project"] {
+    /* Make project links stand out as buttons (desktop) */
+    .navbar-desktop a[href^="#view-project"] {
       background: rgba(255, 255, 255, 0.3);
       border: 1px solid rgba(255,255,255,0.5);
       padding: 10px 20px;
       font-weight: 600;
+      transition: all 0.3s ease;
     }
-    .navbar a[href^="#view-project"]:hover {
+    .navbar-desktop a[href^="#view-project"]:hover {
       background: var(--primary);
       border-color: var(--primary-dark);
       transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .navbar-desktop a[href^="#view-project"].active-link {
+      background: var(--primary);
+      box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 8px 20px rgba(0,0,0,0.2);
     }
 
-    /* Adjust main padding for fixed navbar */
+    /* ===== MOBILE TWO NAVBARS (hidden on desktop, shown on <=900px) ===== */
+    .navbar-main, .navbar-projects {
+      display: none; /* hidden by default, shown in mobile query */
+    }
+
+    /* Adjust main padding for different layouts */
     main {
-      padding-top: 120px;
+      padding-top: 120px; /* default for desktop single navbar */
     }
 
     section {
       max-width: 900px;
       margin: 0 auto;
       padding: 150px 24px 100px 24px;
-      scroll-margin-top: 120px; /* ensures section is not hidden under navbar when linking */
+      scroll-margin-top: 120px; /* ensures section is not hidden under navbar */
     }
 
+    /* ===== MOBILE STYLES (max-width: 900px) ===== */
+    @media (max-width: 900px) {
+      /* Hide desktop navbar */
+      .navbar-desktop {
+        display: none;
+      }
+
+      /* Show mobile navbars */
+      .navbar-main, .navbar-projects {
+        display: flex;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: var(--glass-bg);
+        backdrop-filter: var(--apple-blur);
+        -webkit-backdrop-filter: var(--apple-blur);
+        border: 1px solid var(--glass-border);
+        border-radius: 100px;
+        padding: 8px 16px;
+        box-shadow: var(--shadow);
+        align-items: center;
+        gap: 12px;
+        width: auto;
+        max-width: 95vw;
+        white-space: nowrap;
+      }
+
+      .navbar-main {
+        top: 12px;
+      }
+
+      .navbar-projects {
+        top: 70px;
+        background: rgba(255,255,255,0.8);
+        border-color: var(--secondary);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 8px;
+      }
+      .navbar-projects::-webkit-scrollbar {
+        display: none;
+      }
+
+      .navbar-main .logo {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: var(--text);
+        margin-right: 4px;
+      }
+
+      .navbar-main a, .navbar-projects a {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        border-radius: 100px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+      }
+
+      .navbar-main a:hover, .navbar-projects a:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar-main a.active-link {
+        background: var(--primary);
+        color: #000;
+        box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 4px 10px rgba(0,0,0,0.1);
+        font-weight: 800;
+        transform: scale(1.05);
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+
+      .projects-label {
+        font-weight: 700;
+        color: var(--secondary);
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        margin-right: 4px;
+        white-space: nowrap;
+      }
+
+      .navbar-projects a {
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255,255,255,0.5);
+        padding: 6px 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .navbar-projects a:hover {
+        background: var(--primary);
+        border-color: var(--primary-dark);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 8px 20px rgba(0,0,0,0.2);
+      }
+      .navbar-projects a.active-link {
+        background: var(--primary);
+        box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 8px 20px rgba(0,0,0,0.2);
+      }
+
+      main {
+        padding-top: 130px; /* adjust for two navbars */
+      }
+
+      section {
+        padding: 120px 16px 80px 16px;
+        scroll-margin-top: 140px;
+      }
+
+      .glass-card {
+        padding: 3rem 1.5rem;
+      }
+
+      .pitch-banner {
+        font-size: 1.2rem;
+        padding: 1.5rem;
+      }
+
+      .engine-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Rest of the styles (unchanged from previous) */
     h1, h2, h3 { 
       font-family: 'Syne', sans-serif; 
       font-weight: 600;
@@ -194,7 +345,6 @@
       border-radius: 10px;
     }
 
-    /* Glass Cards */
     .glass-card {
       background: var(--surface);
       backdrop-filter: var(--apple-blur);
@@ -348,10 +498,9 @@
     
     .page-view.active {
       display: block;
-      opacity: 1; /* ensures initial view is visible */
+      opacity: 1;
     }
 
-    /* Animation for outgoing page */
     .page-view.slide-out-left {
       animation: slideOutLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
@@ -381,7 +530,6 @@
       100% { opacity: 1; transform: translateX(0) scale(1); }
     }
 
-    /* Image placeholders & actual images */
     .img-placeholder {
       background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
       border-radius: 20px;
@@ -401,7 +549,6 @@
       min-height: 120px;
     }
 
-    /* Make images clearly clickable */
     .image-container {
       position: relative;
       display: inline-block;
@@ -424,7 +571,6 @@
       border-color: var(--primary);
     }
 
-    /* Zoom icon overlay */
     .image-container::after {
       content: "🔍";
       position: absolute;
@@ -552,7 +698,6 @@
       box-shadow: 0 20px 30px rgba(212, 255, 0, 0.3);
     }
 
-    /* System flow mini-card */
     .flow-card {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: var(--apple-blur);
@@ -581,7 +726,6 @@
       font-size: 1.5rem;
     }
 
-    /* Highlighted text */
     .highlight {
       background: var(--primary);
       font-weight: 800;
@@ -590,7 +734,6 @@
       display: inline-block;
     }
 
-    /* Friendly tip box */
     .tip-box {
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: var(--apple-blur);
@@ -603,7 +746,6 @@
       color: var(--text);
     }
 
-    /* Modal for feature details */
     .feature-modal {
       display: none;
       position: fixed;
@@ -612,7 +754,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.8);
-      z-index: 3000;
+      z-index: 10000;
       justify-content: center;
       align-items: center;
     }
@@ -672,7 +814,6 @@
       border: 2px solid var(--glass-border);
     }
 
-    /* Workflow snapshot section */
     .workflow-snapshots {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -698,7 +839,6 @@
       margin: 0.5rem 0;
     }
 
-    /* Detailed component cards inside deep-dive */
     .component-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -721,7 +861,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Collapsible section with highlight */
     .collapsible {
       margin: 2rem 0;
     }
@@ -765,11 +904,10 @@
     }
 
     .collapsible-content.expanded {
-      max-height: 5000px; /* large enough for content */
+      max-height: 5000px;
       padding: 2rem;
     }
 
-    /* Lightbox overlay (reuse) */
     .lightbox-overlay {
       display: none;
       position: fixed;
@@ -778,7 +916,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.9);
-      z-index: 2000;
+      z-index: 10000;
       justify-content: center;
       align-items: center;
       cursor: pointer;
@@ -818,31 +956,11 @@
     .lightbox-close:hover {
       color: var(--primary);
     }
-
-    @media (max-width: 900px) {
-      .navbar {
-        top: 12px;
-        padding: 8px 12px;
-        gap: 12px;
-      }
-      .navbar .logo {
-        font-size: 1.2rem;
-      }
-      .navbar a {
-        padding: 8px 12px;
-        font-size: 0.85rem;
-      }
-      .projects-label {
-        font-size: 0.9rem;
-      }
-      main { padding-top: 100px; }
-      section { padding: 120px 24px 100px 24px; }
-    }
   </style>
 </head>
 <body>
-  <!-- Unified Top Navbar with "Check out my projects" label and button‑like project links -->
-  <div class="navbar">
+  <!-- DESKTOP SINGLE NAVBAR (shown on >=901px) -->
+  <div class="navbar-desktop">
     <span class="logo">AS.</span>
     <div class="nav-links">
       <a href="#about" data-order="0" class="active-link">About</a>
@@ -857,6 +975,21 @@
       <a href="#view-project2" data-order="5">Budget</a>
       <a href="#view-project3" data-order="6">Artistic</a>
     </div>
+  </div>
+
+  <!-- MOBILE TWO NAVBARS (shown on <=900px) -->
+  <div class="navbar-main">
+    <span class="logo">AS.</span>
+    <a href="#about" data-order="0" class="active-link">About</a>
+    <a href="#skills" data-order="1">Skills</a>
+    <a href="#experience" data-order="2">Work</a>
+    <a href="#contact" data-order="3">Contact</a>
+  </div>
+  <div class="navbar-projects">
+    <span class="projects-label">🚀 Projects:</span>
+    <a href="#view-project1" data-order="4">n8n</a>
+    <a href="#view-project2" data-order="5">Budget</a>
+    <a href="#view-project3" data-order="6">Artistic</a>
   </div>
 
   <main>
@@ -934,13 +1067,10 @@
         <h2 class="section-label">/ automation</h2>
         <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">n8n auto-scheduler</h1>
 
-        <!-- Ad-style pitch with ADHD-friendly note -->
         <div class="pitch-banner">
-          ⏰ <span class="highlight">Stop micromanaging your calendar</span> — let AI do it. <br/>
-          <span style="font-size: 1rem; font-weight: 400;">Daily auto‑scheduling with your custom rules. Works while you sleep.<br/>✨ <strong>ADHD‑friendly:</strong> Only use what you need, no extra apps, just your regular calendar.</span>
+          ⏰ <span class="highlight">Stop micromanaging your calendar</span>
         </div>
 
-        <!-- ⚡ System Flow mini-card -->
         <h3 style="font-size: 1.5rem; margin: 2rem 0 1rem;">⚡ Automation Flow</h3>
         <div class="flow-card">
           <span class="flow-step">📋 Google Sheets</span>
@@ -952,30 +1082,26 @@
           <span class="flow-step">🔗 Webhooks</span>
         </div>
 
-        <!-- Condensed "How it works" story – corrected -->
         <div class="glass-card" style="padding: 2.5rem; margin-top: 2rem;">
           <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">📖 How your calendar becomes your personal assistant</h3>
           <div>
             <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
-              <span class="highlight">Every morning</span>, your all‑day tasks from your calendar are <span class="highlight">automatically converted</span> into timed events, guided by the rules you've set in Google Sheets. They're placed into free slots – respecting your fixed meetings.
-            </p>
-            <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
-              You set the rules: <span class="highlight">buffers, avoid‑events, time windows</span> – and the scheduler obeys without question.
+              <span class="highlight">Every morning</span>, your all‑day tasks (like "Gym" or "Cook") get magically converted into timed events, squeezed into free spots while respecting your fixed meetings. You're in control: set simple rules like <span class="highlight">"no gym within 4 hours of sleep"</span> or <span class="highlight">"buffer 15 min after work"</span>. The scheduler just follows them.
             </p>
             <ul class="detail-list" style="margin-top: 2rem; font-size: 1.1rem;">
-              <li>✨ <strong>Recurring patterns</strong> like “every weekday at 10am” – just write it once.</li>
-              <li>🔄 <strong>Two‑way sync</strong> with Google Sheets – changes in the sheet update the calendar, and vice versa. The same data lives in both places, always in sync.</li>
-              <li>🔗 <strong>Clickable webhook links</strong> inside event descriptions – mark tasks as <span class="highlight">FINISHED</span>, <span class="highlight">POSTPONE</span>, or <span class="highlight">COMPRESS</span> without leaving Google Calendar. Pure API magic, no extra tools needed.</li>
+              <li>✨ <strong>Recurring patterns</strong> – type "every weekday at 10am" once and it repeats forever.</li>
+              <li>🔄 <strong>Two‑way sync</strong> – change a rule in Google Sheets and it updates the calendar instantly. Edit in the calendar and the sheet syncs back. Same data, two places.</li>
+              <li>🔗 <strong>Clickable links inside event descriptions</strong> – mark tasks done, postpone, or compress without leaving Google Calendar. All from your phone too.</li>
+              <li>🚦 <strong>Smart dependencies</strong> – the system knows you need 30 min after eating before gym, and shifts everything like dominoes if one task runs late.</li>
+              <li>📱 <strong>Edit on the go</strong> – tweak rules directly in the calendar description on your phone. No app needed.</li>
             </ul>
           </div>
         </div>
 
-        <!-- Friendly tip box: real-world example -->
         <div class="tip-box">
-          💡 <strong>Real‑world example:</strong> Imagine your afternoon is like a train – if one meeting runs late, everything behind it gets delayed. The <strong>Connect your events</strong> engine automatically shifts your tasks like a railway dispatcher, but more importantly, it enforces <strong>smart dependencies</strong>: “Gym must be after Work”, “No gym within 4 hours of sleep”, “Cooking before Eating”. Your schedule flows like a story, not a jumble.
+          💡 <strong>Real‑world example:</strong> The system knows you shouldn't eat 30 minutes before gym – so it never schedules your meal too close. And if one task runs late, it pushes everything else forward like a row of dominoes – automatically. You decide the rules, or let it be flexible. It's like having a personal assistant who just gets you.
         </div>
 
-        <!-- Core engine cards -->
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">⚙️ Core engines</h3>
         <div class="engine-cards">
           <div class="engine-card">
@@ -1004,13 +1130,11 @@
           </div>
         </div>
 
-        <!-- Customisation section -->
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">🎨 Customisation – Your Rules, Your Way</h3>
         <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: -1.5rem; margin-bottom: 2rem;">
           Customise how your events react in either sheets or within calendar descriptions.
         </p>
         <div class="engine-cards">
-          <!-- Card 1: Google Sheets -->
           <div class="engine-card">
             <div class="emoji-icon">📋</div>
             <img src="sheet.png" alt="Google Sheets configuration" class="engine-image" onclick="openLightbox(this.src, this.alt)">
@@ -1018,7 +1142,6 @@
             <p>All your rules live in a simple sheet. Edit on any device – changes sync instantly.</p>
             <button class="detail-btn" onclick="openCustomModal('sheets')">🔍 Details</button>
           </div>
-          <!-- Card 2: Calendar Descriptions -->
           <div class="engine-card">
             <div class="emoji-icon">📝</div>
             <img src="CalDesc.png" alt="Calendar description with webhook links" class="engine-image" onclick="openLightbox(this.src, this.alt)">
@@ -1028,7 +1151,6 @@
           </div>
         </div>
 
-        <!-- See it in action (3 images) -->
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">📸 See it in action</h3>
         <div class="photo-grid">
           <div class="photo-item">
@@ -1045,7 +1167,6 @@
           </div>
         </div>
 
-        <!-- Technical Deep‑Dive (highlighted) -->
         <div class="collapsible">
           <div class="collapsible-header" onclick="toggleDeepDive()">
             <span>🔬✨ Technical Deep‑Dive ✨🔬</span>
@@ -1234,6 +1355,7 @@
   </div>
 
   <script>
+    import { Analytics } from "@vercel/analytics/next"
     let currentOrder = 0;
     let currentViewId = 'home';
     let isAnimating = false;
@@ -1246,13 +1368,13 @@
       const targetView = document.getElementById('view-' + viewId);
 
       if (viewId === currentViewId) {
-        // Just scroll to section within the same view
         isAnimating = false;
         if (targetSectionId) {
           setTimeout(() => {
             const target = document.getElementById(targetSectionId);
             if (target) {
-              const offset = 120;
+              // Determine offset based on screen width (mobile vs desktop)
+              const offset = window.innerWidth <= 900 ? 140 : 120;
               const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
               window.scrollTo({ top: targetPos, behavior: 'smooth' });
             }
@@ -1261,7 +1383,6 @@
         return;
       }
 
-      // Determine direction for outgoing animation
       const goingForward = newOrder > currentOrder;
       const outClass = goingForward ? 'slide-out-left' : 'slide-out-right';
       currentView.classList.add(outClass);
@@ -1275,7 +1396,8 @@
         currentOrder = newOrder;
         currentViewId = viewId;
 
-        document.querySelectorAll('.navbar a').forEach(a => {
+        // Update all navbars' active links (desktop and mobile)
+        document.querySelectorAll('.navbar-desktop a, .navbar-main a, .navbar-projects a').forEach(a => {
           a.classList.remove('active-link');
           if(parseInt(a.getAttribute('data-order')) === newOrder) {
             a.classList.add('active-link');
@@ -1286,7 +1408,7 @@
           setTimeout(() => {
             const target = document.getElementById(targetSectionId);
             if (target) {
-              const offset = 120;
+              const offset = window.innerWidth <= 900 ? 140 : 120;
               const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
               window.scrollTo({ top: targetPos, behavior: 'smooth' });
             }
@@ -1311,12 +1433,16 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const currentId = entry.target.getAttribute('id');
-          const activeLink = document.querySelector(`.navbar a[href="#${currentId}"]`);
+          // Check which navbar is visible (desktop or mobile)
+          const desktopLink = document.querySelector(`.navbar-desktop a[href="#${currentId}"]`);
+          const mobileMainLink = document.querySelector(`.navbar-main a[href="#${currentId}"]`);
+          const activeLink = desktopLink || mobileMainLink;
           
           if (activeLink) {
-            document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active-link'));
+            document.querySelectorAll('.navbar-desktop a, .navbar-main a, .navbar-projects a').forEach(a => a.classList.remove('active-link'));
             activeLink.classList.add('active-link');
             currentOrder = parseInt(activeLink.getAttribute('data-order'));
+            // Also update project navbar if needed (but it doesn't have home links)
           }
         }
       });
@@ -1326,8 +1452,8 @@
       scrollObserver.observe(section);
     });
 
-    // Navbar click handlers
-    document.querySelectorAll('.navbar a').forEach(link => {
+    // Navbar click handlers (desktop and mobile)
+    document.querySelectorAll('.navbar-desktop a, .navbar-main a, .navbar-projects a').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
         const href = this.getAttribute('href');
@@ -1336,21 +1462,18 @@
         if (href.startsWith('#view-project')) {
           switchView(href.replace('#view-', ''), null, order);
         } else if (href.startsWith('#')) {
-          // If already in home view, just scroll directly (no animation)
           if (currentViewId === 'home') {
             const targetId = href.substring(1);
             const target = document.getElementById(targetId);
             if (target) {
-              const offset = 120;
+              const offset = window.innerWidth <= 900 ? 140 : 120;
               const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
               window.scrollTo({ top: targetPos, behavior: 'smooth' });
             }
-            // Update active link
-            document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active-link'));
+            document.querySelectorAll('.navbar-desktop a, .navbar-main a, .navbar-projects a').forEach(a => a.classList.remove('active-link'));
             this.classList.add('active-link');
             currentOrder = order;
           } else {
-            // Switch to home view and scroll
             switchView('home', href.substring(1), order);
           }
         }
@@ -1473,7 +1596,6 @@
       modal.classList.add('active');
     }
 
-    // Customisation modals
     function openCustomModal(type) {
       let content = '';
       if (type === 'sheets') {
@@ -1526,7 +1648,6 @@ Avoid: team sync</pre>
       }
     });
 
-    // Collapsible technical deep-dive
     function toggleDeepDive() {
       const content = document.getElementById('deepDiveContent');
       const arrow = document.getElementById('deepDiveArrow');
