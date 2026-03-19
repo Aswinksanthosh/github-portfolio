@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <title>Aswin Santhosh | Backend Architect</title>
+  <!-- Lucide for icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Vercel Analytics (replace with your actual ID) -->
   <script defer src="https://va.vercel-scripts.com/v1/analytics.js" data-project-id="YOUR_VERCEL_ANALYTICS_ID"></script>
   <style>
@@ -143,6 +145,7 @@
     .navbar-desktop a[href^="#view-project"].active-link {
       background: var(--primary);
       box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 8px 20px rgba(0,0,0,0.2);
+      border-color: var(--primary-dark);
     }
 
     /* ===== MOBILE TWO NAVBARS (hidden on desktop, shown on <=900px) ===== */
@@ -264,7 +267,11 @@
       }
       .navbar-projects a.active-link {
         background: var(--primary);
+        border-color: var(--primary-dark);
+        transform: scale(1.05);
         box-shadow: 0 0 20px rgba(212, 255, 0, 0.8), 0 8px 20px rgba(0,0,0,0.2);
+        font-weight: 800;
+        color: #000;
       }
 
       main {
@@ -1053,15 +1060,19 @@
             <textarea class="form-control" rows="5" placeholder="Your vision..." name="message" required></textarea>
             <button class="btn-submit" type="submit">Deploy Message</button>
           </form>
-          <div style="margin-top: 4rem; display: flex; gap: 40px; justify-content: center;">
-            <a href="https://github.com/Aswinksanthosh" target="_blank" style="color: var(--text); font-weight: 600; text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; transition: color 0.3s; letter-spacing: 2px;">GITHUB</a>
-            <a href="https://linkedin.com/in/aswin-k-santhosh-15557a245" target="_blank" style="color: var(--secondary); font-weight: 600; text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; transition: color 0.3s; letter-spacing: 2px;">LINKEDIN</a>
+          <div style="margin-top: 4rem; display: flex; gap: 40px; justify-content: center; align-items: center;">
+            <a href="https://github.com/Aswinksanthosh" target="_blank" style="color: var(--text); font-weight: 600; text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; transition: color 0.3s; letter-spacing: 2px; display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="github" style="width: 1.2rem; height: 1.2rem;"></i> GITHUB
+            </a>
+            <a href="https://linkedin.com/in/aswin-k-santhosh-15557a245" target="_blank" style="color: var(--secondary); font-weight: 600; text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; transition: color 0.3s; letter-spacing: 2px; display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="linkedin" style="width: 1.2rem; height: 1.2rem;"></i> LINKEDIN
+            </a>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- PROJECT 1: n8n Auto‑Scheduler -->
+    <!-- PROJECT 1: n8n Auto‑Scheduler (images now in ./n8n/) -->
     <div id="view-project1" class="page-view">
       <section>
         <h2 class="section-label">/ automation</h2>
@@ -1069,6 +1080,17 @@
 
         <div class="pitch-banner">
           ⏰ <span class="highlight">Stop micromanaging your calendar</span>
+        </div>
+
+        <!-- NEW INTRO CARD: What is n8n? -->
+        <div class="glass-card" style="padding: 2.5rem; margin-top: 2rem;">
+          <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">❓ What is the n8n calendar project?</h3>
+          <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
+            <span class="highlight">n8n</span> is a powerful tool that connects different services through APIs – think of it as a smart glue for apps. You can hook up Google Calendar, Sheets, Slack, and hundreds of others, then create workflows that automate repetitive tasks. 
+          </p>
+          <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8; margin-top: 1rem;">
+            This project uses n8n to build a <span class="highlight">personal calendar assistant</span>. It takes your all‑day tasks, applies your custom rules (like “no gym within 4 hours of sleep”), and schedules them into free slots – all while keeping everything in sync with Google Sheets. It's like having a robot that organizes your day exactly how you want.
+          </p>
         </div>
 
         <h3 style="font-size: 1.5rem; margin: 2rem 0 1rem;">⚡ Automation Flow</h3>
@@ -1105,19 +1127,19 @@
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">⚙️ Core engines</h3>
         <div class="engine-cards">
           <div class="engine-card">
-            <img src="sched.png" alt="Scheduling Engine" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/sched.png" alt="Scheduling Engine" class="engine-image" onclick="openLightbox(this.src, this.alt)">
             <h4>⏰ Scheduling Engine</h4>
             <p>Converts all‑day tasks into timed events, finds free slots, handles custom time formats.</p>
             <button class="detail-btn" onclick="openFeatureModal('scheduling')">🔍 Details</button>
           </div>
           <div class="engine-card">
-            <img src="post.png" alt="Connect your events engine" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/post.png" alt="Connect your events engine" class="engine-image" onclick="openLightbox(this.src, this.alt)">
             <h4>🔗 Connect your events</h4>
             <p>Smart dependency rules – chain events like 'Gym after Work' or enforce buffers between activities. No more manual reshuffling.</p>
             <button class="detail-btn" onclick="openFeatureModal('dependencies')">🔍 Details</button>
           </div>
           <div class="engine-card">
-            <img src="sheets.png" alt="CRUD Sync" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/sheets.png" alt="CRUD Sync" class="engine-image" onclick="openLightbox(this.src, this.alt)">
             <h4>🔄 CRUD Sync</h4>
             <p>Bidirectional sync: changes in sheets ↔ changes in calendar descriptions. The same data, two places, always consistent.</p>
             <button class="detail-btn" onclick="openFeatureModal('crud')">🔍 Details</button>
@@ -1137,14 +1159,14 @@
         <div class="engine-cards">
           <div class="engine-card">
             <div class="emoji-icon">📋</div>
-            <img src="sheet.png" alt="Google Sheets configuration" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/sheet.png" alt="Google Sheets configuration" class="engine-image" onclick="openLightbox(this.src, this.alt)">
             <h4>Configure in Google Sheets</h4>
             <p>All your rules live in a simple sheet. Edit on any device – changes sync instantly.</p>
             <button class="detail-btn" onclick="openCustomModal('sheets')">🔍 Details</button>
           </div>
           <div class="engine-card">
             <div class="emoji-icon">📝</div>
-            <img src="CalDesc.png" alt="Calendar description with webhook links" class="engine-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/CalDesc.png" alt="Calendar description with webhook links" class="engine-image" onclick="openLightbox(this.src, this.alt)">
             <h4>Tweak Inside Calendar</h4>
             <p>Modify event rules directly in the description – buffers, avoid‑events, dependencies. No sheet needed.</p>
             <button class="detail-btn" onclick="openCustomModal('calendar')">🔍 Details</button>
@@ -1154,15 +1176,15 @@
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">📸 See it in action</h3>
         <div class="photo-grid">
           <div class="photo-item">
-            <img src="before.png" alt="Before scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/before.png" alt="Before scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
             <span class="photo-caption">📅 Before</span>
           </div>
           <div class="photo-item">
-            <img src="after.png" alt="After scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/after.png" alt="After scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
             <span class="photo-caption">📅 After Scheduling</span>
           </div>
           <div class="photo-item">
-            <img src="CalDesc.png" alt="Calendar description" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <img src="./n8n/CalDesc.png" alt="Calendar description" class="project-image" onclick="openLightbox(this.src, this.alt)">
             <span class="photo-caption">📝 Calendar Description</span>
           </div>
         </div>
@@ -1176,17 +1198,17 @@
             <h3>📸 Workflow Snapshots</h3>
             <div class="workflow-snapshots">
               <div class="snapshot-card">
-                <img src="sheet.png" alt="Google Sheets config" onclick="openLightbox(this.src, this.alt)">
+                <img src="./n8n/sheet.png" alt="Google Sheets config" onclick="openLightbox(this.src, this.alt)">
                 <h4>1. Google Sheets</h4>
                 <p>All tasks and rules are defined here. Each row = one task with JSON configuration.</p>
               </div>
               <div class="snapshot-card">
-                <img src="sched.png" alt="Scheduling node" onclick="openLightbox(this.src, this.alt)">
+                <img src="./n8n/sched.png" alt="Scheduling node" onclick="openLightbox(this.src, this.alt)">
                 <h4>2. Scheduling Engine</h4>
                 <p>Converts all‑day tasks into timed events, finds free slots, handles custom formats.</p>
               </div>
               <div class="snapshot-card">
-                <img src="CalDesc.png" alt="Calendar description" onclick="openLightbox(this.src, this.alt)">
+                <img src="./n8n/CalDesc.png" alt="Calendar description" onclick="openLightbox(this.src, this.alt)">
                 <h4>3. Calendar & Webhooks</h4>
                 <p>Events appear in your calendar with clickable links for instant control.</p>
               </div>
@@ -1275,38 +1297,109 @@
       </section>
     </div>
 
-    <!-- PROJECT 2: BudjetBuddy (unchanged) -->
+    <!-- PROJECT 2: BudgetBuddy (images now in ./Budget/) -->
     <div id="view-project2" class="page-view">
       <section>
         <h2 class="section-label">/ web engine</h2>
-        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">budjet buddy</h1>
-        <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1.5rem;">Hostel booking web app with dynamic pricing and management.</p>
-        <div class="glass-card" style="margin-top: 3rem; padding: 4rem;">
-          <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">BudjetBuddy is a full‑stack web application built with <strong>Django</strong> that simplifies hostel booking. It features a dynamic pricing engine that adjusts rates based on demand, an interactive booking calendar, and an admin dashboard for managing reservations, payments, and user data. The project demonstrates my ability to build scalable, data‑driven web applications.</p>
-          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Key Features</h3>
-          <ul class="detail-list">
-            <li><strong>Dynamic Pricing:</strong> Prices automatically adjust based on occupancy, seasonality, and booking lead time.</li>
-            <li><strong>Booking Calendar:</strong> Interactive calendar showing real‑time availability.</li>
-            <li><strong>User Dashboard:</strong> Personalized dashboards for guests and admins.</li>
-            <li><strong>Payment Integration:</strong> Secure Stripe payments with automatic invoices.</li>
-          </ul>
-          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Tech Stack</h3>
+        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">budget buddy</h1>
+        
+        <div class="pitch-banner">
+          🏨 <span class="highlight">Smart hostel booking for admins & guests</span>
+        </div>
+
+        <!-- Overview from README -->
+        <div class="glass-card" style="padding: 2.5rem; margin-top: 2rem;">
+          <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">📌 Project Overview</h3>
+          <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
+            <strong>BudgetBuddy</strong> is a modern hostel booking platform where users can search, view, and book hostel rooms, while admins have full control over hostel listings, pricing, and availability.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+            <div>
+              <h4 style="color: var(--secondary);">👤 Users can:</h4>
+              <ul class="detail-list">
+                <li>Sign up and log in</li>
+                <li>Search hostels by name or location</li>
+                <li>View available room types and prices</li>
+                <li>Select date ranges for booking</li>
+                <li>View current bookings and total cost</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: var(--secondary);">🛠️ Admins can:</h4>
+              <ul class="detail-list">
+                <li>Register and log in as admin</li>
+                <li>Add, edit, or delete hostel details</li>
+                <li>Upload hostel images</li>
+                <li>Set room availability and pricing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screenshots from README -->
+        <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">📸 Screenshots</h3>
+        <div class="photo-grid">
+          <div class="photo-item">
+            <img src="./Budget/b1.png" alt="Login Page" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">🔐 Login Page</span>
+          </div>
+          <div class="photo-item">
+            <img src="./Budget/a1.png" alt="Hostel Listings" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">🏘️ Hostel Listings</span>
+          </div>
+          <div class="photo-item">
+            <img src="./Budget/c2.png" alt="Booking Page" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">🛏️ Booking Page</span>
+          </div>
+          <div class="photo-item">
+            <img src="./Budget/c4.png" alt="View Bookings" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">📅 View Bookings</span>
+          </div>
+        </div>
+
+        <!-- How it works -->
+        <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">🧠 How it Works</h3>
+        <div class="flow-card" style="justify-content: space-around;">
+          <span class="flow-step">🏨 Admin adds hostels</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">👤 User books room</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">⚙️ Backend updates counts</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">📋 Booking history visible</span>
+        </div>
+        <p style="font-size: 1.2rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+          Hostels are added by admins, users book available rooms, and the backend dynamically updates remaining room counts.
+        </p>
+
+        <!-- Tech Stack & Challenges -->
+        <div class="glass-card" style="padding: 2.5rem; margin-top: 3rem;">
+          <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">⚙️ Tech Stack</h3>
           <div class="tech-stack">
             <span>Python</span><span>Django</span><span>PostgreSQL</span><span>Bootstrap</span><span>Stripe API</span>
           </div>
-          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Challenges & Solutions</h3>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">🚧 Challenges & Solutions</h3>
           <ul class="detail-list">
             <li><strong>Dynamic pricing algorithm:</strong> Implemented a rule‑based system with configurable parameters stored in the database.</li>
             <li><strong>Concurrent booking conflicts:</strong> Used database transactions with <code>select_for_update()</code> to prevent double‑bookings.</li>
             <li><strong>Admin analytics dashboard:</strong> Pre‑computed daily statistics with Django management commands.</li>
           </ul>
-          <a class="back-btn" onclick="switchView('home', 'about', 0)">← Return to Base</a>
         </div>
+
+        <!-- Getting Started -->
+        <div class="tip-box" style="margin-top: 3rem;">
+          <strong>🚀 Getting Started</strong><br>
+          <code style="background: #0F172A; color: #38BDF8; padding: 0.2rem 0.5rem; border-radius: 6px;">git clone https://github.com/Aswinksanthosh/Project_1_Hostel_Booking</code><br>
+          <code style="background: #0F172A; color: #38BDF8; padding: 0.2rem 0.5rem; border-radius: 6px; display: inline-block; margin-top: 0.5rem;">cd Project_1_Hostel_Booking</code><br>
+          <code style="background: #0F172A; color: #38BDF8; padding: 0.2rem 0.5rem; border-radius: 6px; display: inline-block; margin-top: 0.5rem;">npm install</code><br>
+          <code style="background: #0F172A; color: #38BDF8; padding: 0.2rem 0.5rem; border-radius: 6px; display: inline-block; margin-top: 0.5rem;">npm start</code>
+        </div>
+
+        <a class="back-btn" onclick="switchView('home', 'about', 0)">← Return to Base</a>
       </section>
     </div>
 
-    <!-- PROJECT 3: Artistic Profiles (unchanged) -->
+    <!-- PROJECT 3: Artistic Profiles (images would go in ./Artistic/) -->
     <div id="view-project3" class="page-view">
       <section>
         <h2 class="section-label">/ creative</h2>
@@ -1332,6 +1425,7 @@
             <li><strong>Image optimization:</strong> Leveraged Wix's built‑in media manager and lazy loading.</li>
             <li><strong>Reliable contact forms:</strong> Built a custom backend module using Velo web modules to send emails via SMTP.</li>
           </ul>
+          <!-- If you have images for Artistic, place them in ./Artistic/ and add a photo grid here -->
           <a class="back-btn" onclick="switchView('home', 'about', 0)">← Return to Base</a>
         </div>
       </section>
@@ -1355,7 +1449,13 @@
   </div>
 
   <script>
-    import { Analytics } from "@vercel/analytics/next"
+    // Initialize Lucide icons after DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+
     let currentOrder = 0;
     let currentViewId = 'home';
     let isAnimating = false;
@@ -1507,7 +1607,7 @@
       }
     });
 
-    // Feature modal for core engines
+    // Feature modal for core engines (updated with ./n8n/ paths)
     const modal = document.getElementById('featureModal');
     const modalContent = document.getElementById('modalContent');
 
@@ -1515,7 +1615,7 @@
       let content = '';
       let imageHtml = '';
       if (feature === 'scheduling') {
-        imageHtml = `<img src="sched.png" alt="Scheduling Engine" class="modal-image">`;
+        imageHtml = `<img src="./n8n/sched.png" alt="Scheduling Engine" class="modal-image">`;
         content = `
           <h3>⏰ Scheduling Engine</h3>
           ${imageHtml}
@@ -1537,7 +1637,7 @@
 }</pre>
         `;
       } else if (feature === 'dependencies') {
-        imageHtml = `<img src="post.png" alt="Dependency Engine" class="modal-image">`;
+        imageHtml = `<img src="./n8n/post.png" alt="Dependency Engine" class="modal-image">`;
         content = `
           <h3>🔗 Connect your events (Dependency Engine)</h3>
           ${imageHtml}
@@ -1561,7 +1661,7 @@
 }</pre>
         `;
       } else if (feature === 'crud') {
-        imageHtml = `<img src="sheets.png" alt="CRUD Sync" class="modal-image">`;
+        imageHtml = `<img src="./n8n/sheets.png" alt="CRUD Sync" class="modal-image">`;
         content = `
           <h3>🔄 CRUD Sync</h3>
           ${imageHtml}
@@ -1601,7 +1701,7 @@
       if (type === 'sheets') {
         content = `
           <h3>📋 Configure in Google Sheets</h3>
-          <img src="sheet.png" alt="Google Sheets" class="modal-image">
+          <img src="./n8n/sheet.png" alt="Google Sheets" class="modal-image">
           <p>All your rules live in a simple Google Sheet. Edit on any device – changes sync instantly.</p>
           <h4>What you can set:</h4>
           <ul>
@@ -1618,7 +1718,7 @@ GYM       | 2        | {"ideal_time":"6pm","movable":true,"duration":"1.5h","con
       } else if (type === 'calendar') {
         content = `
           <h3>📝 Tweak Inside Calendar</h3>
-          <img src="CalDesc.png" alt="Calendar description" class="modal-image">
+          <img src="./n8n/CalDesc.png" alt="Calendar description" class="modal-image">
           <p>Modify event rules directly in the calendar description – no sheet needed.</p>
           <h4>How it works:</h4>
           <ul>
