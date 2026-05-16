@@ -659,7 +659,7 @@
         Computer Programming graduate from Algonquin College, Ottawa. I build backend systems, REST APIs, and automation tools. Currently seeking junior developer or IT roles in Ottawa. Authorized to work in Canada.
       </p>
       <div class="hero-actions">
-        <a href="mailto:aswinksanthosh000@gmail.com" class="btn btn-primary">Get in touch</a>
+        <a href="mailto:aswinksanthosh000@gmail.com" class="btn btn-primary" onclick="copyEmail(event, 'aswinksanthosh000@gmail.com')">Get in touch</a>
         <a href="#projects" class="btn btn-outline">View my work</a>
       </div>
     </div>
@@ -962,9 +962,9 @@
         I am actively looking for junior developer, backend developer, or IT roles in Ottawa. Authorized to work in Canada on a Post-Graduation Work Permit — no sponsorship required.
       </p>
       <div class="contact-links">
-        <a href="mailto:aswinksanthosh000@gmail.com" class="contact-link">
+        <a href="mailto:aswinksanthosh000@gmail.com" class="contact-link" onclick="copyEmail(event, 'aswinksanthosh000@gmail.com')">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-          Email me
+          <span id="email-btn-text">Email me</span>
         </a>
         <a href="https://linkedin.com/in/aswin-k-santhosh-15557a245" target="_blank" class="contact-link">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -997,6 +997,17 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Copy email to clipboard
+    function copyEmail(e, email) {
+      if (navigator.clipboard) {
+        e.preventDefault();
+        navigator.clipboard.writeText(email).then(() => {
+          const btn = document.getElementById('email-btn-text');
+          if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Email me', 2000); }
+        });
+      }
+    }
 
     // Smooth nav highlight
     const sections = document.querySelectorAll('section[id]');
