@@ -831,7 +831,7 @@
       .navbar { gap: 4px; padding: 8px 8px; }
       .navbar .logo { display: none; }
       .navbar a { padding: 8px 9px; font-size: 0.78rem; }
-      .navbar a.nav-proj { display: none; }
+      .navbar .divider, .navbar .nav-links:last-child { display: none; }
     }
   </style>
 </head>
@@ -845,6 +845,10 @@
       <a href="#projects" data-order="2">Projects</a>
       <a href="#experience" data-order="3">Work</a>
       <a href="#contact" data-order="4">Contact</a>
+    </div>
+    <span class="divider"></span>
+    <div class="nav-links">
+      <span class="projects-label">🚀 Check out my projects:</span>
       <a class="nav-proj" href="#view-project4" data-order="8">French</a>
       <a class="nav-proj" href="#view-project1" data-order="5">n8n</a>
       <a class="nav-proj" href="#view-project2" data-order="6">Budget</a>
