@@ -16,7 +16,7 @@
       --primary-dark: #b8de00;
       --secondary: #0EA5E9; /* Sky Blue */
       --text: #0F172A;
-      --text-muted: #64748B;
+      --text-muted: #475569;
       --shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
       --apple-blur: saturate(180%) blur(24px);
     }
@@ -833,6 +833,29 @@
       .navbar a { padding: 8px 9px; font-size: 0.78rem; }
       .navbar .divider, .navbar .nav-links:last-child { display: none; }
     }
+
+    /* ===== Polish: readability + standout ===== */
+    body { font-size: 17px; }
+    .glance { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2rem; }
+    .chip { background: rgba(255,255,255,0.85); border: 1px solid rgba(0,0,0,0.08); border-radius: 100px; padding: 8px 16px; font-weight: 500; font-size: 0.95rem; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.5rem; }
+    .cta { display: inline-block; padding: 14px 26px; border-radius: 100px; border: 2px solid var(--text); color: var(--text); text-decoration: none; font-weight: 600; background: transparent; }
+    .cta-main { background: var(--primary); border-color: var(--primary-dark); box-shadow: 0 0 20px rgba(212,255,0,0.6); }
+    .live-btn { display: inline-block; margin-top: 16px; padding: 10px 20px; border-radius: 100px; background: var(--text); color: #fff !important; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+    .more-details { margin-top: 3rem; }
+    .more-details > summary { cursor: pointer; font-weight: 600; font-size: 1.15rem; padding: 16px 22px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 18px; list-style: none; }
+    .more-details > summary::-webkit-details-marker { display: none; }
+    @media (max-width: 600px) {
+      body { font-size: 18px; }
+      section { padding: 100px 20px 70px 20px; }
+      .glass-card { padding: 1.5rem !important; border-radius: 24px; }
+      .page-view:not(#view-home) h1.name-highlight { font-size: clamp(2.2rem, 10vw, 3rem) !important; }
+      #about .glass-card p { font-size: 1.3rem !important; line-height: 1.6 !important; }
+      #about .glass-card > div { margin-top: 2rem !important; }
+      .page-view h3 { font-size: 1.4rem !important; }
+      .detail-list li { font-size: 1.05rem; }
+      .mini-card { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -864,13 +887,23 @@
         <h1 class="name-highlight">aswin<br><span class="italic-text">santhosh</span><span class="dot">.</span></h1>
         <div class="glass-card" style="margin-top: 5rem;">
           <p style="font-size: 1.6rem; font-weight: 300; margin: 0; color: var(--text); line-height: 1.8;">
-            I'm a <span style="font-weight: 500; background: var(--primary); padding: 4px 12px; border-radius: 8px;">junior software developer</span> &mdash; Python, Django, PostgreSQL. Algonquin College graduate building backend systems, REST APIs and automation tools. Open to work in Ottawa, ON &middot; authorized to work in Canada.
+            I'm a <span style="font-weight: 500; background: var(--primary); padding: 4px 12px; border-radius: 8px;">junior software developer</span> who builds backend systems, APIs and automation tools with Python, Django and PostgreSQL. Algonquin College graduate based in Ottawa.
           </p>
           <div style="margin-top: 4rem; display: flex; align-items: center; gap: 24px; color: var(--secondary); font-weight: 600; letter-spacing: 4px; font-size: 0.85rem;">
             <span>ALGONQUIN '25</span>
             <span style="width: 40px; height: 2px; background: var(--text); border-radius: 2px;"></span>
             <span>PYTHON SPECIALIST</span>
           </div>
+        </div>
+              <div class="glance">
+          <span class="chip">📍 Ottawa, ON</span>
+          <span class="chip">🐍 Python &middot; Django</span>
+          <span class="chip">✅ Open to work</span>
+          <span class="chip">🚀 4 projects</span>
+        </div>
+        <div class="cta-row">
+          <a class="cta cta-main" href="Aswin-Santhosh-CV.pdf" download>⬇ Download CV</a>
+          <a class="cta" href="mailto:aswinksanthosh000@gmail.com">✉ Email me</a>
         </div>
       </section>
 
@@ -921,6 +954,7 @@
             <h3 style="margin: 0 0 16px 0; color: var(--text); font-size: 1.6rem;">French Class Notes</h3>
             <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6;">Mobile-first French learning site with tap-to-hear. Progress is saved online with Google sign-in.</p>
             <div style="margin-top: 24px; font-weight: 600; color: var(--secondary); letter-spacing: 3px;">PWA &middot; FIREBASE &rarr;</div>
+            <a class="live-btn" href="https://aswinksanthosh.github.io/French-Notes/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Open live app ↗</a>
           </div>
           <div class="mini-card" style="cursor:pointer;" onclick="switchView('project1', null, 5)">
             <h3 style="margin: 0 0 16px 0; color: var(--text); font-size: 1.6rem;">n8n Auto-Scheduler</h3>
@@ -1005,29 +1039,35 @@
           <span class="flow-step">🔗 Webhooks</span>
         </div>
 
-        <!-- Condensed "How it works" story – corrected -->
-        <div class="glass-card" style="padding: 2.5rem; margin-top: 2rem;">
-          <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">📖 How your calendar becomes your personal assistant</h3>
-          <div>
-            <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
-              <span class="highlight">Every morning</span>, your all‑day tasks from your calendar are <span class="highlight">automatically converted</span> into timed events, guided by the rules you've set in Google Sheets. They're placed into free slots – respecting your fixed meetings.
-            </p>
-            <p style="font-size: 1.2rem; color: var(--text); line-height: 1.8;">
-              You set the rules: <span class="highlight">buffers, avoid‑events, time windows</span> – and the scheduler obeys without question.
-            </p>
-            <ul class="detail-list" style="margin-top: 2rem; font-size: 1.1rem;">
-              <li>✨ <strong>Recurring patterns</strong> like “every weekday at 10am” – just write it once.</li>
-              <li>🔄 <strong>Two‑way sync</strong> with Google Sheets – changes in the sheet update the calendar, and vice versa. The same data lives in both places, always in sync.</li>
-              <li>🔗 <strong>Clickable webhook links</strong> inside event descriptions – mark tasks as <span class="highlight">FINISHED</span>, <span class="highlight">POSTPONE</span>, or <span class="highlight">COMPRESS</span> without leaving Google Calendar. Pure API magic, no extra tools needed.</li>
-            </ul>
+        <div class="glass-card" style="padding: 2rem; margin-top: 2rem;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">How it works</h3>
+          <ul class="detail-list">
+            <li><strong>Every morning</strong>, all-day tasks become timed events using rules from Google Sheets.</li>
+            <li><strong>Your rules:</strong> buffers, avoid-events, time windows and dependencies like "Gym after Work".</li>
+            <li><strong>Two-way sync</strong> between Sheets and Calendar. Edit either one.</li>
+            <li><strong>One click</strong> to FINISH, POSTPONE or COMPRESS a task, right inside the event.</li>
+          </ul>
+        </div>
+
+        <!-- See it in action (3 images) -->
+        <h3 style="font-size: 1.6rem; margin: 2.5rem 0 1.5rem;">📸 See it in action</h3>
+        <div class="photo-grid">
+          <div class="photo-item">
+            <img src="n8n/before.png" alt="Before scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">📅 Before</span>
+          </div>
+          <div class="photo-item">
+            <img src="n8n/after.png" alt="After scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">📅 After Scheduling</span>
+          </div>
+          <div class="photo-item">
+            <img src="n8n/CalDesc.png" alt="Calendar description" class="project-image" onclick="openLightbox(this.src, this.alt)">
+            <span class="photo-caption">📝 Calendar Description</span>
           </div>
         </div>
 
-        <!-- Friendly tip box: real-world example -->
-        <div class="tip-box">
-          💡 <strong>Real‑world example:</strong> Imagine your afternoon is like a train – if one meeting runs late, everything behind it gets delayed. The <strong>Connect your events</strong> engine automatically shifts your tasks like a railway dispatcher, but more importantly, it enforces <strong>smart dependencies</strong>: “Gym must be after Work”, “No gym within 4 hours of sleep”, “Cooking before Eating”. Your schedule flows like a story, not a jumble.
-        </div>
-
+        <details class="more-details">
+          <summary>⚙️ Show engines &amp; customisation</summary>
         <!-- Core engine cards -->
         <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">⚙️ Core engines</h3>
         <div class="engine-cards">
@@ -1081,22 +1121,7 @@
           </div>
         </div>
 
-        <!-- See it in action (3 images) -->
-        <h3 style="font-size: 2rem; margin: 4rem 0 2rem;">📸 See it in action</h3>
-        <div class="photo-grid">
-          <div class="photo-item">
-            <img src="n8n/before.png" alt="Before scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
-            <span class="photo-caption">📅 Before</span>
-          </div>
-          <div class="photo-item">
-            <img src="n8n/after.png" alt="After scheduling" class="project-image" onclick="openLightbox(this.src, this.alt)">
-            <span class="photo-caption">📅 After Scheduling</span>
-          </div>
-          <div class="photo-item">
-            <img src="n8n/CalDesc.png" alt="Calendar description" class="project-image" onclick="openLightbox(this.src, this.alt)">
-            <span class="photo-caption">📝 Calendar Description</span>
-          </div>
-        </div>
+        </details>
 
         <!-- Technical Deep‑Dive (highlighted) -->
         <div class="collapsible">
@@ -1207,15 +1232,15 @@
       </section>
     </div>
 
-    <!-- PROJECT 2: BudjetBuddy (unchanged) -->
+    <!-- PROJECT 2: BudgetBuddy (unchanged) -->
     <div id="view-project2" class="page-view">
       <section>
         <h2 class="section-label">/ web engine</h2>
-        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">budjet buddy</h1>
+        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">budget buddy</h1>
         <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1.5rem;">Hostel booking web app with dynamic pricing and management. Full-stack, Sep&ndash;Dec 2024.</p>
         <div class="glass-card" style="margin-top: 3rem; padding: 4rem;">
           <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">BudjetBuddy is a full‑stack web application built with <strong>Django</strong> that simplifies hostel booking. It features a dynamic pricing engine that adjusts rates based on demand, an interactive booking calendar, and an admin dashboard for managing reservations, payments, and user data. The project demonstrates my ability to build scalable, data‑driven web applications.</p>
+          <p style="color: var(--text-muted); line-height: 1.8;">A Django hostel-booking app with dynamic pricing, a live booking calendar and an admin dashboard. Built in an Agile team.</p>
           <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Key Features</h3>
           <ul class="detail-list">
             <li><strong>Dynamic Pricing:</strong> Prices automatically adjust based on occupancy, seasonality, and booking lead time.</li>
@@ -1247,7 +1272,7 @@
         <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1.5rem;">HR screening platform &mdash; Agile capstone for OrgFitech Inc. (NDA), Sep&ndash;Dec 2024.</p>
         <div class="glass-card" style="margin-top: 3rem; padding: 4rem;">
           <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">A standalone HR screening tool commissioned by OrgFitech Inc., decoupled from their existing CultureMonitor platform. It lets organizations evaluate potential hires for cultural fit through custom surveys, factor management and a visual screening dashboard &mdash; without needing the full CultureMonitor subscription.</p>
+          <p style="color: var(--text-muted); line-height: 1.8;">A standalone HR tool for OrgFitech Inc. (NDA). Employers screen candidates for culture fit with custom surveys and a visual dashboard.</p>
           <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Key Features</h3>
           <ul class="detail-list"><li><strong>My contribution:</strong> Built the Welcome page and the Screening Dashboard.</li><li><strong>Dynamic data:</strong> Custom PHP and AJAX interactions retrieving data from a MySQL database.</li><li><strong>Integration:</strong> Worked within the existing WordPress plugin architecture and Elementor page builder.</li><li><strong>Teamwork:</strong> Agile team of 4 &mdash; sprint planning, use case diagrams, ERD modeling, deployment documentation.</li><li><strong>Screening flow:</strong> Employers define evaluation factors, add questions, send valuations and view results on a dashboard.</li></ul>
           <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Tech Stack</h3>
@@ -1266,12 +1291,12 @@
         <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1.5rem;">Mobile-first A1/A2 French learning site &mdash; personal project built from my phone, 2025 to present.</p>
         <div class="glass-card" style="margin-top: 3rem; padding: 4rem;">
           <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h3>
-          <p style="color: var(--text-muted); line-height: 1.8;">A mobile-first French learning site covering A1 and A2 notes across 60+ chapters. Built to read on a phone, hear native pronunciation on tap, and track progress per topic. <strong>Your progress is saved online with your Google account</strong>, so you can sign in on any phone or computer and pick up where you left off.</p>
+          <p style="color: var(--text-muted); line-height: 1.8;">A mobile-first French course with 60+ chapters. Tap any word to hear it and tick off topics as you learn. <strong>Your progress is saved online with your Google account</strong>, so it follows you to any phone or computer.</p>
           <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Key Features</h3>
           <ul class="detail-list"><li><strong>Tap to hear:</strong> Any French word or sentence is spoken aloud (Web Speech API).</li><li><strong>Checklists:</strong> Per-topic progress saved on the device.</li><li><strong>Progress saved online:</strong> sign in with Google and your progress syncs across all your devices (Firebase Auth + Firestore).</li><li><strong>Installable:</strong> Home-screen app (PWA) with swipe navigation between chapters.</li><li><strong>Study tools:</strong> One-tap "Copy for Gemini" lesson plus study prompt, and A1/A2 cheat sheets.</li><li><strong>Private journal:</strong> Password-protected, encrypted journal page.</li></ul>
           <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Tech Stack</h3>
           <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PWA</span><span>Firebase Auth</span><span>Firestore</span><span>Web Speech API</span></div>
-          <p style="margin-top: 2rem;"><a href="https://aswinksanthosh.github.io/French-Notes/" target="_blank" rel="noopener" style="color: var(--secondary); font-weight: 600;">Open the live site: aswinksanthosh.github.io/French-Notes &rarr;</a></p><h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Screenshots</h3><div class="project-grid" style="margin-top: 1rem;"><div class="mini-card" style="padding: 1rem;"><img src="French/how-it-works.png" alt="How it works" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">How it works</p></div><div class="mini-card" style="padding: 1rem;"><img src="French/chapter.png" alt="Chapter page" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Chapter page</p></div><div class="mini-card" style="padding: 1rem;"><img src="French/study-plan.png" alt="Study planner" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Study planner</p></div></div>
+          <p style="margin-top: 2rem;"><a class="live-btn" href="https://aswinksanthosh.github.io/French-Notes/" target="_blank" rel="noopener">Open the live app ↗</a></p><h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Screenshots</h3><div class="project-grid" style="margin-top: 1rem;"><div class="mini-card" style="padding: 1rem;"><img src="French/how-it-works.png" alt="How it works" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">How it works</p></div><div class="mini-card" style="padding: 1rem;"><img src="French/chapter.png" alt="Chapter page" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Chapter page</p></div><div class="mini-card" style="padding: 1rem;"><img src="French/study-plan.png" alt="Study planner" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Study planner</p></div></div>
           <a class="back-btn" onclick="switchView('home', 'about', 0)">&larr; Return to Base</a>
         </div>
       </section>
