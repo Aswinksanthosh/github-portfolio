@@ -888,6 +888,8 @@
     .chip { background: #fff; border-color: #E2E8F0; border-radius: 10px; }
     #experience .mini-card:hover { transform: none; box-shadow: var(--shadow); }
     #experience .mini-card { cursor: default; }
+    .navbar a.nav-proj.active-link { background: var(--secondary); color: #fff; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+    .navbar a.nav-proj:hover:not(.active-link) { background: rgba(37,99,235,0.12); color: var(--secondary); }
   </style>
 </head>
 <body>
@@ -1454,32 +1456,29 @@
       }, 350);
     }
 
-    // Intersection Observer for home sections
-    const observerOptions = {
-      root: null,
-      threshold: 0.5
-    };
-
-    const scrollObserver = new IntersectionObserver((entries) => {
+    // Highlight the menu link of the section in the middle of the screen
+    const spyIds = ['about', 'skills', 'projects', 'experience', 'contact'];
+    let spyQueued = false;
+    function updateActiveLink() {
+      spyQueued = false;
       if (currentViewId !== 'home') return;
-      
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const currentId = entry.target.getAttribute('id');
-          const activeLink = document.querySelector(`.navbar a[href="#${currentId}"]`);
-          
-          if (activeLink) {
-            document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active-link'));
-            activeLink.classList.add('active-link');
-            currentOrder = parseInt(activeLink.getAttribute('data-order'));
-          }
-        }
+      const line = window.innerHeight * 0.5;
+      let current = spyIds[0];
+      spyIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
       });
-    }, observerOptions);
-
-    document.querySelectorAll('#view-home section').forEach(section => {
-      scrollObserver.observe(section);
-    });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = 'contact';
+      const link = document.querySelector('.navbar a[href="#' + current + '"]');
+      if (link && !link.classList.contains('active-link')) {
+        document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active-link'));
+        link.classList.add('active-link');
+        currentOrder = parseInt(link.getAttribute('data-order'));
+      }
+    }
+    window.addEventListener('scroll', () => {
+      if (!spyQueued) { spyQueued = true; requestAnimationFrame(updateActiveLink); }
+    }, { passive: true });
 
     // Navbar click handlers
     document.querySelectorAll('.navbar a').forEach(link => {
