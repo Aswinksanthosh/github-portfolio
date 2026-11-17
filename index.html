@@ -864,6 +864,13 @@
     .navbar a:hover { background: rgba(37,99,235,0.08); }
     .dot::after { background: var(--lime) !important; }
     .emoji-icon:empty { display: none; }
+    @media (min-width: 901px) {
+      .navbar { gap: 12px; padding: 8px 16px; }
+      .nav-links { gap: 2px; }
+      .navbar a { padding: 9px 13px; font-size: 0.9rem; }
+      .projects-label { font-size: 0.8rem; letter-spacing: 1px; margin-right: 4px; }
+    }
+    @media (min-width: 901px) and (max-width: 1150px) { .projects-label { display: none; } }
     .section-hint { color: var(--text-muted); margin: -0.5rem 0 1.5rem; font-size: 1rem; }
     .proj-card { background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 1.75rem; box-shadow: 0 6px 20px rgba(15,23,42,0.07); cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; display: flex; flex-direction: column; }
     .proj-card:hover, .proj-card:focus-visible { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(37,99,235,0.18); border-color: var(--secondary); outline: none; }
@@ -898,6 +905,7 @@
     <div class="nav-links">
       <span class="projects-label">Check out my projects:</span>
       <a class="nav-proj" href="#view-project4" data-order="8">French</a>
+      <a class="nav-proj" href="#view-project5" data-order="9">RemotePC</a>
       <a class="nav-proj" href="#view-project1" data-order="5">n8n</a>
       <a class="nav-proj" href="#view-project2" data-order="6">Budget</a>
       <a class="nav-proj" href="#view-project3" data-order="7">Culture</a>
@@ -924,7 +932,7 @@
           <span class="chip">Ottawa, ON</span>
           <span class="chip">Python &middot; Django</span>
           <span class="chip">Open to work</span>
-          <span class="chip"> 4 projects</span>
+          <span class="chip"> 5 projects</span>
         </div>
         <div class="cta-row">
           <a class="cta cta-main" href="Aswin-Santhosh-CV.pdf" download>Download CV</a>
@@ -981,6 +989,12 @@
             <p>Mobile-first French learning site with tap-to-hear. Progress is saved online with Google sign-in.</p>
             <div class="proj-tags"><span>PWA</span><span>Firebase</span><span>JavaScript</span></div>
             <div class="proj-actions"><span class="view-btn">View project &rarr;</span><a class="live-btn" href="https://aswinksanthosh.github.io/French-Notes/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Open live app &#8599;</a></div>
+          </article>
+          <article class="proj-card" role="link" tabindex="0" aria-label="View RemotePc project" onclick="switchView('project5', null, 9)" onkeydown="if(event.key==='Enter'){switchView('project5', null, 9)}">
+            <h3>RemotePc</h3>
+            <p>Control your Windows PC from your phone: lock it, change the volume, open apps or start a Steam game. Private, no cloud.</p>
+            <div class="proj-tags"><span>Node.js</span><span>Tailscale</span><span>PWA</span></div>
+            <div class="proj-actions"><span class="view-btn">View project &rarr;</span><a class="live-btn" href="https://github.com/Aswinksanthosh/RemotePc" target="_blank" rel="noopener" onclick="event.stopPropagation()">View on GitHub &#8599;</a></div>
           </article>
           <article class="proj-card" role="link" tabindex="0" aria-label="View n8n Auto-Scheduler project" onclick="switchView('project1', null, 5)" onkeydown="if(event.key==='Enter'){switchView('project1', null, 5)}">
             <h3>n8n Auto-Scheduler</h3>
@@ -1326,6 +1340,31 @@
           <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Tech Stack</h3>
           <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PWA</span><span>Firebase Auth</span><span>Firestore</span><span>Web Speech API</span></div>
           <p style="margin-top: 2rem;"><a class="live-btn" href="https://aswinksanthosh.github.io/French-Notes/" target="_blank" rel="noopener">Open the live app ↗</a></p><h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Screenshots</h3><div class="project-grid" style="margin-top: 1rem;"><div class="mini-card" style="padding: 1rem;"><img src="French/how-it-works.png" alt="How it works" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">How it works</p></div><div class="mini-card" style="padding: 1rem;"><img src="French/chapter.png" alt="Chapter page" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Chapter page</p></div><div class="mini-card" style="padding: 1rem;"><img src="French/study-plan.png" alt="Study planner" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Study planner</p></div></div>
+          <a class="back-btn" onclick="switchView('home', 'about', 0)">&larr; Return to Base</a>
+        </div>
+      </section>
+    </div>
+
+    <div id="view-project5" class="page-view">
+      <section>
+        <h2 class="section-label">/ remote control</h2>
+        <h1 class="name-highlight" style="font-size: 4.5rem; text-transform: lowercase;">remotepc</h1>
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1.5rem;">Control your Windows PC from your phone. Private, no cloud, no subscription.</p>
+        <div class="glass-card" style="margin-top: 3rem; padding: 4rem;">
+          <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h3>
+          <p style="color: var(--text-muted); line-height: 1.8;">A phone web app and a one-tap installer for your Windows PC. Lock it, change the volume, open apps or start a Steam game from your phone. It runs on your own PC and talks to your phone over a private link.</p>
+          <p style="margin-top: 2rem;"><a class="live-btn" href="https://github.com/Aswinksanthosh/RemotePc" target="_blank" rel="noopener">View on GitHub &#8599;</a></p>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Key Features</h3>
+          <ul class="detail-list"><li><strong>Power menu:</strong> lock, screen off, sleep, restart or shut down. Risky buttons need a hold or a confirmation.</li><li><strong>Steam:</strong> open Steam or Big Picture, pick an installed game, start it or close it.</li><li><strong>Media and apps:</strong> play/pause, volume, audio output, Bluetooth headphones, open apps, and your own custom buttons.</li><li><strong>Easy setup:</strong> a one-line installer, QR code pairing, then add it to your phone home screen (PWA). A guide covers waking a PC that is off.</li><li><strong>Update and Fix-It:</strong> one-tap updates and a built-in tool that checks and explains problems.</li></ul>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Security</h3>
+          <ul class="detail-list"><li><strong>Private network only:</strong> your phone reaches the PC through Tailscale. Connections from other devices are refused. Nothing is opened to the internet.</li><li><strong>No password to leak:</strong> each phone holds a random 192-bit key. The PC stores only a fingerprint, and you can forget any phone.</li><li><strong>Fixed actions only:</strong> the phone can press buttons from a set list. It cannot run commands or read files.</li></ul>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Tech Stack</h3>
+          <div class="tech-stack"><span>Node.js (no dependencies)</span><span>PowerShell installer</span><span>Tailscale</span><span>PWA</span><span>node:test</span><span>GitHub Actions</span></div>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Quality</h3>
+          <ul class="detail-list"><li>Automated tests run on Windows and Linux (Node 20 and 22) with GitHub Actions.</li></ul>
+          <h3 style="font-size: 1.5rem; margin: 3rem 0 1.5rem;">Screenshots</h3>
+          <div class="project-grid" style="margin-top: 1rem;"><div class="mini-card" style="padding: 1rem;"><img src="RemotePc/phone-home.png" alt="Power, Lock and Steam" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Power, Lock and Steam</p></div><div class="mini-card" style="padding: 1rem;"><img src="RemotePc/phone-more.png" alt="Media, apps and custom buttons" loading="lazy" style="width:100%; border-radius: 12px; cursor: zoom-in;" onclick="openLightbox(this.src, this.alt)"><p style="margin: .6rem 0 0; color: var(--text-muted);">Media, apps and custom buttons</p></div></div>
+          <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">Screenshots use demo data. Parts of the remote started from the MIT-licensed Jarvis project by Aditya Dewaskar (credited in the README).</p>
           <a class="back-btn" onclick="switchView('home', 'about', 0)">&larr; Return to Base</a>
         </div>
       </section>
